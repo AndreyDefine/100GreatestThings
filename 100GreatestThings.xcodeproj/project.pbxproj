@@ -22,11 +22,11 @@
 		730612EE1848DA9F0084E9DE /* expabar_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 730612EC1848DA9F0084E9DE /* expabar_plus.png */; };
 		730612EF1848DA9F0084E9DE /* expabar_thunder.png in Resources */ = {isa = PBXBuildFile; fileRef = 730612ED1848DA9F0084E9DE /* expabar_thunder.png */; };
 		730613331848E10E0084E9DE /* ExpaBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730613321848E10E0084E9DE /* ExpaBarViewController.m */; };
+		73061335184C792E0084E9DE /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73061334184C792E0084E9DE /* SDWebImage.framework */; };
 		736AB1651846069F00F227FA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736AB1641846069F00F227FA /* CoreData.framework */; };
 		7384C77118473F7A00F59D9D /* FirstLoadingViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7384C77018473F7A00F59D9D /* FirstLoadingViewViewController.m */; };
 		7384C774184755DB00F59D9D /* DatabaseFromUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7384C773184755DB00F59D9D /* DatabaseFromUrl.m */; };
 		7384C7E218478EDC00F59D9D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7384C7E118478EDC00F59D9D /* ImageIO.framework */; };
-		73A08E19184867AB002E212A /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A08E18184867AB002E212A /* SDWebImage.framework */; };
 		73C78938183E44C200BD9C8E /* TWTSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C78937183E44C200BD9C8E /* TWTSideMenuViewController.m */; };
 		73C7893A183E455600BD9C8E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73C78939183E455600BD9C8E /* QuartzCore.framework */; };
 		73C7893D183F3B6800BD9C8E /* TWTMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C7893C183F3B6800BD9C8E /* TWTMenuViewController.m */; };
@@ -79,13 +79,13 @@
 		730612ED1848DA9F0084E9DE /* expabar_thunder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expabar_thunder.png; sourceTree = "<group>"; };
 		730613311848E10E0084E9DE /* ExpaBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpaBarViewController.h; sourceTree = "<group>"; };
 		730613321848E10E0084E9DE /* ExpaBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpaBarViewController.m; sourceTree = "<group>"; };
+		73061334184C792E0084E9DE /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		736AB1641846069F00F227FA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7384C76F18473F7900F59D9D /* FirstLoadingViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstLoadingViewViewController.h; sourceTree = "<group>"; };
 		7384C77018473F7A00F59D9D /* FirstLoadingViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstLoadingViewViewController.m; sourceTree = "<group>"; };
 		7384C772184755DB00F59D9D /* DatabaseFromUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseFromUrl.h; sourceTree = "<group>"; };
 		7384C773184755DB00F59D9D /* DatabaseFromUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseFromUrl.m; sourceTree = "<group>"; };
 		7384C7E118478EDC00F59D9D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		73A08E18184867AB002E212A /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		73C78936183E44C200BD9C8E /* TWTSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSideMenuViewController.h; sourceTree = "<group>"; };
 		73C78937183E44C200BD9C8E /* TWTSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSideMenuViewController.m; sourceTree = "<group>"; };
 		73C78939183E455600BD9C8E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -128,7 +128,7 @@
 				736AB1651846069F00F227FA /* CoreData.framework in Frameworks */,
 				73C7893A183E455600BD9C8E /* QuartzCore.framework in Frameworks */,
 				016738D015C014DA00F6861E /* UIKit.framework in Frameworks */,
-				73A08E19184867AB002E212A /* SDWebImage.framework in Frameworks */,
+				73061335184C792E0084E9DE /* SDWebImage.framework in Frameworks */,
 				016738D215C014DA00F6861E /* Foundation.framework in Frameworks */,
 				016738D415C014DA00F6861E /* CoreGraphics.framework in Frameworks */,
 			);
@@ -254,7 +254,7 @@
 		73EE3AFC1844913E00A24757 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				73A08E18184867AB002E212A /* SDWebImage.framework */,
+				73061334184C792E0084E9DE /* SDWebImage.framework */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -482,6 +482,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/baskakov/Documents/Development/100GreatThings/100GreatesThings\\ 25.11.2013/100GreatestThings/Library",
+					"/Users/baskakov/Documents/Development/100GreatThings/100GreatesThingsProject\\ /100GreatestThings/Library",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "100GreatestThings/100GreatestThings-Prefix.pch";
@@ -514,6 +515,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/baskakov/Documents/Development/100GreatThings/100GreatesThings\\ 25.11.2013/100GreatestThings/Library",
+					"/Users/baskakov/Documents/Development/100GreatThings/100GreatesThingsProject\\ /100GreatestThings/Library",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "100GreatestThings/100GreatestThings-Prefix.pch";

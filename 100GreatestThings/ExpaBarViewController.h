@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomProgressBar.h"
 
 @interface ExpaBarViewController : UIViewController
 {
 }
 
-@property (strong, nonatomic)IBOutlet UIProgressView *progressView;
+@property (strong, nonatomic) CustomProgressBar* expabar;
+
++(ExpaBarViewController*)getSharedInstance;
 
 @end

@@ -42,12 +42,10 @@
     //set customBarViewController
     UIViewController *customBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomBarViewController"];
     self.customBar=customBarController.view;
-    self.customBar.backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:1];
     
     //set expaCustomBarViewController
     UIViewController *expacustomBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"ExpaBarController"];
     self.expaCustomBar=expacustomBarController.view;
-    self.expaCustomBar.backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.8];
     
     CGRect screenBounds = [UIScreen mainScreen].bounds ;
     CGFloat width = CGRectGetWidth(screenBounds);
@@ -65,7 +63,7 @@
     [self.view addSubview:customBar];
     [self.view addSubview:buttonMenu];
     [self.view addSubview:buttonBack];
-     buttonBack.hidden=true;
+    buttonBack.hidden=true;
     
     //проверим первая ли это загрузка
     if([CommonUserDefaults getSharedInstance].flagNotFirstLaunch==NO)
@@ -101,12 +99,12 @@
     
     //set position menuButton
     int x1 = ([buttonMenu frame].size.width)/2+14;
-    int y1 = ([buttonMenu frame].size.height)/2+14;
+    int y1 = ([buttonMenu frame].size.height)/2+15;
     [buttonMenu setCenter:CGPointMake(x1, y1)];
     
     //set position backButton
-    int x2 = width-([buttonBack frame].size.width)/2-10;
-    int y2 = ([buttonBack frame].size.height)/2+10;
+    int x2 = ([buttonMenu frame].size.width)/2+8;
+    int y2 = ([buttonBack frame].size.height)/2+15;
     [buttonBack setCenter:CGPointMake(x2, y2)];
 }
 
@@ -126,10 +124,12 @@
     if(viewController==[self.viewControllers objectAtIndex:0]||[viewController isKindOfClass:[FirstLoadingViewViewController class]])
     {
         buttonBack.hidden=true;
+        buttonMenu.hidden=false;
     }
     else
     {
         buttonBack.hidden=false;
+        buttonMenu.hidden=true;
     }
 
 }

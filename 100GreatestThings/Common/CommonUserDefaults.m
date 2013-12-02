@@ -13,6 +13,7 @@
 
 @implementation CommonUserDefaults
 @synthesize flagNotFirstLaunch=_flagNotFirstLaunch;
+@synthesize level=_level;
 
 //singleton не защищённый
 
@@ -43,6 +44,12 @@ static CommonUserDefaults *sCommonUserDefaults = nil;
 
 - (BOOL)flagNotFirstLaunch {
     _flagNotFirstLaunch = [prefs boolForKey:@"flagNotFirstLaunch"];
+    /*if(!_flagNotFirstLaunch)
+    {
+        NSString *defaultPrefsFile = [[NSBundle mainBundle] pathForResource:@"defaultPrefs" ofType:@"plist"];
+        NSDictionary *defaultPreferences = [NSDictionary dictionaryWithContentsOfFile:defaultPrefsFile];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPreferences];
+    }*/
     return _flagNotFirstLaunch;
 }
 
@@ -52,6 +59,20 @@ static CommonUserDefaults *sCommonUserDefaults = nil;
     //very important at this time to  synchronize
     [prefs synchronize];
 }
+
+
+- (int)level {
+    _flagNotFirstLaunch = [prefs integerForKey:@"level"];
+    return _flagNotFirstLaunch;
+}
+
+- (void)setLevel: (int)newValue {
+    _level=newValue;
+    [prefs setInteger:_level forKey:@"level"];
+    //very important at this time to  synchronize
+    [prefs synchronize];
+}
+
 
 
 

@@ -16,5 +16,6 @@
 + (CommonUserDefaults *) getSharedInstance;
 
 @property (nonatomic) BOOL flagNotFirstLaunch;
+@property (nonatomic) int level;
 
 @end

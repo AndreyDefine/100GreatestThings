@@ -13,7 +13,10 @@
 @end
 
 @implementation ExpaBarViewController
-@synthesize progressView;
+static ExpaBarViewController *expaBarViewController = nil;
+
+
+@synthesize expabar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +30,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    float width=CGRectGetWidth(screenBounds);
+    float leftmargin=60;
+    float topmargin=9;
+    self.expabar=[CustomProgressBar addProgressBarInFrame:CGRectMake(leftmargin, topmargin, width-leftmargin*2, 14.f) onView:self.view withRange:629 image1:@"expabar_progressdone" imagebackground:@"expabar_progressnotdone" fullRange:10000];
+    //[self.expabar setProgress:800];
+    //not best way to make singleton, returns last created bar, otherwise we create it only in interface builder so can't make mistake
+    //lazy singleton
+    expaBarViewController=self;
+}
+
++(ExpaBarViewController*)getSharedInstance
+{
+    return expaBarViewController;
 }
 
 - (void)didReceiveMemoryWarning

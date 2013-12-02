@@ -9,24 +9,39 @@
 #import <UIKit/UIKit.h>
 #import "Things_list.h"
 
+enum {
+    CustomCellOpened = 1,
+    CustomCellFacebook = 2,
+    CustomCellTwitter = 3,
+    CustomCellExpa = 4,
+    CustomCellLevel = 5
+};
+typedef NSUInteger CustomCellType;
+
+
 @interface CustomCell : UITableViewCell
 {
 }
 
+@property (nonatomic, readwrite) CustomCellType customCellType;
 @property (nonatomic, strong) IBOutlet UILabel *labelListName;
 @property (strong, nonatomic) Things_list *things_list;
 @property (nonatomic, strong) IBOutlet UIButton *buttonView1;
 @property (nonatomic, strong) IBOutlet UIView *viewBack1;
 @property (nonatomic, strong) IBOutlet UIImageView *imageView1;
 @property (nonatomic, retain) IBOutletCollection(UIImageView) NSArray *friendsCollection;
+@property (nonatomic, strong) IBOutlet UIImageView *imageLock;
+@property (nonatomic, strong) IBOutlet UILabel *labelLock;
+@property (nonatomic, strong) IBOutlet UILabel *labelLockLevel;
 
 @property (nonatomic, strong) IBOutlet UIView *roundRectView;
+@property (nonatomic, strong) IBOutlet UIView *lockView;
 
 
 @property (strong, nonatomic) UINavigationController* navigationController;
 @property (strong, nonatomic) UIStoryboard* storyboard;
 
--(IBAction)buttonTouched:(id)sender;
+-(void)buttonTouched:(id)sender;
 
 
 @end

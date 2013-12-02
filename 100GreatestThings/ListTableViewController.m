@@ -15,6 +15,7 @@
 #import "LoadSaveImageFromUrl.h"
 #import "ListButton.h"
 #import "DatabaseFromUrl.h"
+#import "CommonUserDefaults.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -94,15 +95,21 @@
 
 - (void)configureCell:(CustomCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Things_list *things_list = [_fetchedResultsController objectAtIndexPath:indexPath];
+    cell.things_list=things_list;
     
     cell.navigationController=self.navigationController;
     cell.storyboard=self.storyboard;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    // Clearing out cell background
+    //set cell type
+    if([things_list.level integerValue]>[CommonUserDefaults getSharedInstance].level){
+        //need level for cell
+        cell.customCellType=CustomCellLevel;
+    }
+    else{
+        //normal cell
+        cell.customCellType=CustomCellOpened;
+    }
     
-    ((ListButton*)cell.buttonView1).parentCell=cell;
-    
-    cell.things_list=things_list;
     cell.labelListName.text=things_list.title;
     
     UIImage *img = [[UIImage imageNamed:@"shadow.png"]

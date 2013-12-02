@@ -13,6 +13,7 @@
 @end
 
 @implementation ExpaBarViewController
+@synthesize progressView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

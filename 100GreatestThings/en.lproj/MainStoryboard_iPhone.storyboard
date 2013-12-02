@@ -309,6 +309,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="progressView" destination="2ai-sF-a2G" id="fnt-bB-RaD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mu-tK-Rhv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

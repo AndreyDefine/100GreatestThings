@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ExpaBarViewController : UIViewController
+{
+}
+
+@property (strong, nonatomic)IBOutlet UIProgressView *progressView;
 
 @end

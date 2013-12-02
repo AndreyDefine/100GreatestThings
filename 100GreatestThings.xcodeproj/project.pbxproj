@@ -22,7 +22,7 @@
 		730612EE1848DA9F0084E9DE /* expabar_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 730612EC1848DA9F0084E9DE /* expabar_plus.png */; };
 		730612EF1848DA9F0084E9DE /* expabar_thunder.png in Resources */ = {isa = PBXBuildFile; fileRef = 730612ED1848DA9F0084E9DE /* expabar_thunder.png */; };
 		730613331848E10E0084E9DE /* ExpaBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730613321848E10E0084E9DE /* ExpaBarViewController.m */; };
-		73061335184C792E0084E9DE /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73061334184C792E0084E9DE /* SDWebImage.framework */; };
+		73061337184C7C930084E9DE /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73061336184C7C930084E9DE /* SDWebImage.framework */; };
 		736AB1651846069F00F227FA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736AB1641846069F00F227FA /* CoreData.framework */; };
 		7384C77118473F7A00F59D9D /* FirstLoadingViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7384C77018473F7A00F59D9D /* FirstLoadingViewViewController.m */; };
 		7384C774184755DB00F59D9D /* DatabaseFromUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7384C773184755DB00F59D9D /* DatabaseFromUrl.m */; };
@@ -79,7 +79,7 @@
 		730612ED1848DA9F0084E9DE /* expabar_thunder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expabar_thunder.png; sourceTree = "<group>"; };
 		730613311848E10E0084E9DE /* ExpaBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpaBarViewController.h; sourceTree = "<group>"; };
 		730613321848E10E0084E9DE /* ExpaBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpaBarViewController.m; sourceTree = "<group>"; };
-		73061334184C792E0084E9DE /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
+		73061336184C7C930084E9DE /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		736AB1641846069F00F227FA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7384C76F18473F7900F59D9D /* FirstLoadingViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstLoadingViewViewController.h; sourceTree = "<group>"; };
 		7384C77018473F7A00F59D9D /* FirstLoadingViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstLoadingViewViewController.m; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 				736AB1651846069F00F227FA /* CoreData.framework in Frameworks */,
 				73C7893A183E455600BD9C8E /* QuartzCore.framework in Frameworks */,
 				016738D015C014DA00F6861E /* UIKit.framework in Frameworks */,
-				73061335184C792E0084E9DE /* SDWebImage.framework in Frameworks */,
+				73061337184C7C930084E9DE /* SDWebImage.framework in Frameworks */,
 				016738D215C014DA00F6861E /* Foundation.framework in Frameworks */,
 				016738D415C014DA00F6861E /* CoreGraphics.framework in Frameworks */,
 			);
@@ -254,7 +254,7 @@
 		73EE3AFC1844913E00A24757 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				73061334184C792E0084E9DE /* SDWebImage.framework */,
+				73061336184C7C930084E9DE /* SDWebImage.framework */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 		016738C215C014D900F6861E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = MyCompanyName;
 			};
 			buildConfigurationList = 016738C515C014D900F6861E /* Build configuration list for PBXProject "100GreatestThings" */;
@@ -429,8 +429,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -442,10 +447,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -455,14 +464,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -483,6 +500,7 @@
 					"$(inherited)",
 					"/Users/baskakov/Documents/Development/100GreatThings/100GreatesThings\\ 25.11.2013/100GreatestThings/Library",
 					"/Users/baskakov/Documents/Development/100GreatThings/100GreatesThingsProject\\ /100GreatestThings/Library",
+					/Users/baskakov/Documents/Development/100GreatThings/100GreatestThingsProject/100GreatestThings/Library,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "100GreatestThings/100GreatestThings-Prefix.pch";
@@ -516,6 +534,7 @@
 					"$(inherited)",
 					"/Users/baskakov/Documents/Development/100GreatThings/100GreatesThings\\ 25.11.2013/100GreatestThings/Library",
 					"/Users/baskakov/Documents/Development/100GreatThings/100GreatesThingsProject\\ /100GreatestThings/Library",
+					/Users/baskakov/Documents/Development/100GreatThings/100GreatestThingsProject/100GreatestThings/Library,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "100GreatestThings/100GreatestThings-Prefix.pch";

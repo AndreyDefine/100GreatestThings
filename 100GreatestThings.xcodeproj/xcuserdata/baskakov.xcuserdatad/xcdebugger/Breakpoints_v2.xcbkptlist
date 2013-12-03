@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/MyNavigationControllerViewController.m"
-            timestampString = "407679269.794031"
+            timestampString = "407770113.753977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "-showBack:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/MyNavigationControllerViewController.m"
-            timestampString = "407679269.794031"
+            timestampString = "407770113.753977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "-setItemsPosition:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,27 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/Common/CommonUserDefaults.m"
-            timestampString = "407687775.064466"
+            timestampString = "407771301.93875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "-flagNotFirstLaunch"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "100GreatestThings/Common/CommonUserDefaults.m"
-            timestampString = "407687775.064466"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-setFlagNotFirstLaunch:"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/MyNavigationControllerViewController.m"
-            timestampString = "407679269.794031"
+            timestampString = "407770113.753977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -122,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/MyNavigationControllerViewController.m"
-            timestampString = "407680817.665811"
+            timestampString = "407770113.753977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "-connection:willCacheResponse:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/MyNavigationControllerViewController.m"
-            timestampString = "407429673.91057"
+            timestampString = "407763257.696594"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -202,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/Common/CommonUserDefaults.m"
-            timestampString = "407687775.064466"
+            timestampString = "407771301.93875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "-flagNotFirstLaunch"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/Common/CommonUserDefaults.m"
-            timestampString = "407687775.064466"
+            timestampString = "407771301.93875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "-setFlagNotFirstLaunch:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/ListTableViewController.m"
-            timestampString = "407689591.065102"
+            timestampString = "407767508.233626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "-tableView:canEditRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,12 +266,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/MyNavigationControllerViewController.m"
-            timestampString = "407679269.794031"
+            timestampString = "407770113.753977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-navigationController:didShowViewController:animated:"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "-navigationController:willShowViewController:animated:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -438,11 +422,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/ListTableViewController.m"
-            timestampString = "407689591.065102"
+            timestampString = "407767508.233626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "-controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -454,11 +438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/ListTableViewController.m"
-            timestampString = "407689591.065102"
+            timestampString = "407767508.233626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -470,11 +454,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/ListTableViewController.m"
-            timestampString = "407689591.065102"
+            timestampString = "407767508.233626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -486,11 +470,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/ListTableViewController.m"
-            timestampString = "407689591.065102"
+            timestampString = "407767508.233626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "-configureCell:atIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -502,11 +486,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/ListTableViewController.m"
-            timestampString = "407689591.065102"
+            timestampString = "407767508.233626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-configureCell:atIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -598,11 +582,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/Common/DatabaseFromUrl.m"
-            timestampString = "407423991.164798"
+            timestampString = "407771522.059667"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-LoadDataFromJSONList:"
             landmarkType = "5">
          </BreakpointContent>
@@ -614,11 +598,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/MyNavigationControllerViewController.m"
-            timestampString = "407679269.794031"
+            timestampString = "407770113.753977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -646,11 +630,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/Common/DatabaseFromUrl.m"
-            timestampString = "407423991.164798"
+            timestampString = "407771522.059667"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "-LoadDataFromJSONList:"
             landmarkType = "5">
          </BreakpointContent>
@@ -662,11 +646,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/Common/DatabaseFromUrl.m"
-            timestampString = "407421803.255705"
+            timestampString = "407770113.753977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "-LoadDataFromJSONTask:curlist:"
             landmarkType = "5">
          </BreakpointContent>
@@ -726,11 +710,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/Common/DatabaseFromUrl.m"
-            timestampString = "407423658.818554"
+            timestampString = "407770113.753977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "-LoadDataFromJSONTask:curlist:"
             landmarkType = "5">
          </BreakpointContent>
@@ -742,11 +726,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/Common/DatabaseFromUrl.m"
-            timestampString = "407423659.681841"
+            timestampString = "407770113.753977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "-LoadDataFromJSONTask:curlist:"
             landmarkType = "5">
          </BreakpointContent>
@@ -758,11 +742,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/Common/DatabaseFromUrl.m"
-            timestampString = "407423989.224008"
+            timestampString = "407770113.753977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "-LoadDataFromJSONTask:curlist:"
             landmarkType = "5">
          </BreakpointContent>
@@ -822,11 +806,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/CustomProgressBar.m"
-            timestampString = "407683853.416476"
+            timestampString = "407765037.172408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
@@ -838,11 +822,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/CustomProgressBar.m"
-            timestampString = "407683853.416476"
+            timestampString = "407765037.172408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
@@ -854,11 +838,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/CustomProgressBar.m"
-            timestampString = "407683853.416476"
+            timestampString = "407765037.172408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-initWithFrame:"
             landmarkType = "5">
          </BreakpointContent>
@@ -870,11 +854,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/CustomCell.m"
-            timestampString = "407686804.369638"
+            timestampString = "407768919.399332"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "-buttonTouched:"
             landmarkType = "5">
          </BreakpointContent>
@@ -886,11 +870,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/ExpaBarViewController.m"
-            timestampString = "407671151.671869"
+            timestampString = "407770879.152309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "+getSharedInstance"
             landmarkType = "5">
          </BreakpointContent>
@@ -902,28 +886,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/CustomCell.m"
-            timestampString = "407686804.369638"
+            timestampString = "407768919.399332"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "-setCustomCellType:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "100GreatestThings/Common/CommonUserDefaults.m"
-            timestampString = "407687816.558805"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-flagNotFirstLaunch"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -950,11 +918,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/ListTableViewController.m"
-            timestampString = "407689591.065102"
+            timestampString = "407767508.233626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "-configureCell:atIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -966,12 +934,140 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100GreatestThings/CustomCell.m"
-            timestampString = "407689089.385028"
+            timestampString = "407768919.399332"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-setCustomCellType:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "100GreatestThings/AppDelegate.m"
+            timestampString = "407758637.235662"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "-applicationDidEnterBackground:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "100GreatestThings/ExpaBarViewController.m"
+            timestampString = "407770879.152309"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "-timerFired:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "100GreatestThings/Common/DatabaseFromUrl.m"
+            timestampString = "407770141.608263"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-LoadDataFromJSONSettings:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "100GreatestThings/Common/CommonUserDefaults.m"
+            timestampString = "407771301.93875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-setEnergy_growth_rate:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "100GreatestThings/Common/CommonUserDefaults.m"
+            timestampString = "407771301.93875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-energy_growth_rate"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "100GreatestThings/Common/CommonUserDefaults.m"
+            timestampString = "407771301.93875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "-energy_growth_rate"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "100GreatestThings/Common/DatabaseFromUrl.m"
+            timestampString = "407771295.892743"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "-LoadDataFromJSONSettings:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "100GreatestThings/MyNavigationControllerViewController.m"
+            timestampString = "407772609.501437"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-setItemsPosition:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

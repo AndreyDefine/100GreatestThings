@@ -11,10 +11,14 @@
 
 @interface ExpaBarViewController : UIViewController
 {
+    NSTimer *aTimer;
 }
 
 @property (strong, nonatomic) CustomProgressBar* expabar;
 
 +(ExpaBarViewController*)getSharedInstance;
+-(IBAction)getMoreMoney:(id)sender;
+
+-(void)addexpa:(float)inexpa;
 
 @end

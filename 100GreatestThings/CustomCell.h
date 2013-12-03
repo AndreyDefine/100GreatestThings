@@ -22,7 +22,6 @@ typedef NSUInteger CustomCellType;
 @interface CustomCell : UITableViewCell
 {
 }
-
 @property (nonatomic, readwrite) CustomCellType customCellType;
 @property (nonatomic, strong) IBOutlet UILabel *labelListName;
 @property (strong, nonatomic) Things_list *things_list;
@@ -33,15 +32,23 @@ typedef NSUInteger CustomCellType;
 @property (nonatomic, strong) IBOutlet UIImageView *imageLock;
 @property (nonatomic, strong) IBOutlet UILabel *labelLock;
 @property (nonatomic, strong) IBOutlet UILabel *labelLockLevel;
+@property (nonatomic, strong) IBOutlet UILabel *labelEnergy;
+@property (nonatomic, strong) IBOutlet UILabel *labelNrg;
 
 @property (nonatomic, strong) IBOutlet UIView *roundRectView;
 @property (nonatomic, strong) IBOutlet UIView *lockView;
 
 
+
 @property (strong, nonatomic) UINavigationController* navigationController;
 @property (strong, nonatomic) UIStoryboard* storyboard;
 
+//события на нажатия на кнопку списка
 -(void)buttonTouched:(id)sender;
+-(void)buttonTouchFacebook:(id)sender;
+-(void)buttonTouchTwitter:(id)sender;
+-(void)buttonTouchLevel:(id)sender;
+-(void)buttonTouchExpa:(id)sender;
 
 
 @end

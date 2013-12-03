@@ -14,6 +14,7 @@
 
 @interface MyNavigationControllerViewController ()
 
+
 @end
 
 @implementation MyNavigationControllerViewController
@@ -31,7 +32,6 @@
     }
     return self;
 }
-
 
 - (void)viewDidLoad
 {
@@ -65,10 +65,14 @@
     [self.view addSubview:buttonBack];
     buttonBack.hidden=true;
     
+    [[DatabaseFromUrl getSharedInstance] GetSettings:nil];
+    
     //проверим первая ли это загрузка
     if([CommonUserDefaults getSharedInstance].flagNotFirstLaunch==NO)
     {
         NSLog(@"first launch!!!");
+        
+        [CommonUserDefaults getSharedInstance].lastlaunchdate=[NSDate date];
         
         FirstLoadingViewViewController *myViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstLoadingView"];
         [self pushViewController:myViewController animated:YES];
@@ -119,7 +123,7 @@
      [self popViewControllerAnimated:YES];
 }
 
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if(viewController==[self.viewControllers objectAtIndex:0]||[viewController isKindOfClass:[FirstLoadingViewViewController class]])
     {

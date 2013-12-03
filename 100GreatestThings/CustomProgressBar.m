@@ -54,7 +54,9 @@
         range=self.fullRange;
     }
     float progress=(float)range/self.fullRange;
-    expirience.text=[[[NSNumber alloc]initWithInt:range]stringValue];
+    
+    expirience.text=[NSString stringWithFormat:@"%d/%d",range,self.fullRange ];
+    
     [expirience sizeToFit];
     
     int label_left=self.frame.size.width*progress-expirience.frame.size.width;

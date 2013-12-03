@@ -105,6 +105,10 @@
         //need level for cell
         cell.customCellType=CustomCellLevel;
     }
+    else if(!things_list.opened)
+    {
+        cell.customCellType=CustomCellExpa;
+    }
     else{
         //normal cell
         cell.customCellType=CustomCellOpened;
@@ -219,7 +223,7 @@
                                    entityForName:@"Things_list" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:NO];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"level" ascending:YES];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     //[fetchRequest setFetchBatchSize:100];

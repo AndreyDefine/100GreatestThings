@@ -14,8 +14,18 @@
 }
 
 + (CommonUserDefaults *) getSharedInstance;
+-(void)saveDefaults;
 
 @property (nonatomic) BOOL flagNotFirstLaunch;
 @property (nonatomic) int level;
+@property (nonatomic) float maxenergy;
+@property (nonatomic) float energyrange;
+@property (nonatomic,strong) NSDate* lastlaunchdate;
+//from server
+@property (nonatomic)float energy_growth_rate;
+@property (nonatomic)int facebook_login_energy_reward;
+@property (nonatomic)int facebook_login_exp_reward;
+@property (nonatomic)int twitter_login_energy_reward;
+@property (nonatomic)int twitter_login_exp_reward;
 
 @end

@@ -4,5 +4,19 @@
 <dict>
 	<key>level</key>
 	<integer>1</integer>
+	<key>energyrange</key>
+	<integer>60</integer>
+	<key>maxenergy</key>
+	<integer>100</integer>
+	<key>energy_growth_rate</key>
+	<real>0.2</real>
+	<key>facebook_login_energy_reward</key>
+	<integer>100</integer>
+	<key>facebook_login_exp_reward</key>
+	<integer>10</integer>
+	<key>twitter_login_energy_reward</key>
+	<integer>100</integer>
+	<key>twitter_login_exp_reward</key>
+	<integer>10</integer>
 </dict>
 </plist>

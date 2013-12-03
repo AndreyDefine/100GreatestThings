@@ -12,6 +12,8 @@
 #import "Things_list.h"
 #import "LoadSaveImageFromUrl.h"
 #import "DatabaseFromUrl.h"
+#import "MKStoreManager.h"
+#import "CommonUserDefaults.h"
 
 
 @interface AppDelegate ()
@@ -28,13 +30,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    
+{    
     //init window
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.menuViewController = [[TWTMenuViewController alloc] initWithNibName:nil bundle:nil];
+    
+    [MKStoreManager sharedManager];
     
     //main viewcontroller
     UIStoryboard *storyboard;
@@ -84,6 +87,8 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[DatabaseFromUrl getSharedInstance] saveContext];
+    [[CommonUserDefaults getSharedInstance] saveDefaults];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -98,8 +103,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Saves changes in the application's managed object context before the application terminates.
-    [[DatabaseFromUrl getSharedInstance] saveContext];
 }
 
 @end

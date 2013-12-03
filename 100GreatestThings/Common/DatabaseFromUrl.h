@@ -21,6 +21,8 @@
 
 - (void) LoadDataFromURL:(void (^)(void))responseBlock;
 
+- (void) GetSettings:(void (^)(void))responseBlock;
+
 - (NSURL *)applicationDocumentsDirectory;
 - (void)saveContext;
 

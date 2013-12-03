@@ -12,8 +12,17 @@
 @end
 
 @implementation CommonUserDefaults
-@synthesize flagNotFirstLaunch=_flagNotFirstLaunch;
-@synthesize level=_level;
+@synthesize flagNotFirstLaunch;
+@synthesize level;
+@synthesize maxenergy;
+@synthesize energyrange;
+@synthesize lastlaunchdate;
+//from server
+@synthesize energy_growth_rate;
+@synthesize facebook_login_energy_reward;
+@synthesize facebook_login_exp_reward;
+@synthesize twitter_login_energy_reward;
+@synthesize twitter_login_exp_reward;
 
 //singleton не защищённый
 
@@ -43,37 +52,119 @@ static CommonUserDefaults *sCommonUserDefaults = nil;
 }
 
 - (BOOL)flagNotFirstLaunch {
-    _flagNotFirstLaunch = [prefs boolForKey:@"flagNotFirstLaunch"];
-    /*if(!_flagNotFirstLaunch)
-    {
-        NSString *defaultPrefsFile = [[NSBundle mainBundle] pathForResource:@"defaultPrefs" ofType:@"plist"];
-        NSDictionary *defaultPreferences = [NSDictionary dictionaryWithContentsOfFile:defaultPrefsFile];
-        [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPreferences];
-    }*/
-    return _flagNotFirstLaunch;
+    flagNotFirstLaunch = [prefs boolForKey:@"flagNotFirstLaunch"];
+    return flagNotFirstLaunch;
 }
 
 - (void)setFlagNotFirstLaunch: (BOOL)newValue {
-    _flagNotFirstLaunch=newValue;
-    [prefs setBool:_flagNotFirstLaunch forKey:@"flagNotFirstLaunch"];
+    flagNotFirstLaunch=newValue;
+    [prefs setBool:newValue forKey:@"flagNotFirstLaunch"];
     //very important at this time to  synchronize
     [prefs synchronize];
 }
 
 
 - (int)level {
-    _flagNotFirstLaunch = [prefs integerForKey:@"level"];
-    return _flagNotFirstLaunch;
+    level = [prefs integerForKey:@"level"];
+    return level;
 }
 
 - (void)setLevel: (int)newValue {
-    _level=newValue;
-    [prefs setInteger:_level forKey:@"level"];
-    //very important at this time to  synchronize
-    [prefs synchronize];
+    level=newValue;
+    [prefs setInteger:newValue forKey:@"level"];
 }
 
+- (float)maxenergy {
+    maxenergy = [prefs floatForKey:@"maxenergy"];
+    return maxenergy;
+}
 
+- (void)setMaxenergy: (float)newValue {
+    maxenergy=newValue;
+    [prefs setFloat:newValue forKey:@"maxenergy"];
+}
+
+- (float)energyrange {
+    energyrange = [prefs floatForKey:@"energyrange"];
+    return energyrange;
+}
+
+- (void)setEnergyrange: (float)newValue {
+    energyrange=newValue;
+    if(energyrange>maxenergy)
+    {
+        energyrange=maxenergy;
+    }
+    [prefs setFloat:newValue forKey:@"energyrange"];
+    
+}
+
+- (NSDate*)lastlaunchdate {
+    lastlaunchdate = [prefs objectForKey:@"lastlaunchdate"];
+    return lastlaunchdate;
+}
+
+- (void)setLastlaunchdate: (NSDate*)newValue {
+    lastlaunchdate=newValue;
+    [prefs setObject:newValue forKey:@"lastlaunchdate"];
+    
+}
+
+- (float)energy_growth_rate {
+    energy_growth_rate = [prefs floatForKey:@"energy_growth_rate"];
+    return energy_growth_rate;
+}
+
+- (void)setEnergy_growth_rate: (float)newValue {
+    energy_growth_rate=newValue;
+    [prefs setFloat:newValue forKey:@"energy_growth_rate"];
+    
+}
+
+- (int)facebook_login_energy_reward {
+    facebook_login_energy_reward = [prefs integerForKey:@"facebook_login_energy_reward"];
+    return facebook_login_energy_reward;
+}
+
+- (void)setFacebook_login_energy_reward: (int)newValue {
+    facebook_login_energy_reward=newValue;
+    [prefs setInteger:newValue forKey:@"facebook_login_energy_reward"];
+}
+
+- (int)facebook_login_exp_reward {
+    facebook_login_exp_reward = [prefs integerForKey:@"facebook_login_exp_reward"];
+    return facebook_login_exp_reward;
+}
+
+- (void)setFacebook_login_exp_reward: (int)newValue {
+    facebook_login_exp_reward=newValue;
+    [prefs setInteger:newValue forKey:@"facebook_login_exp_reward"];
+}
+
+- (int)twitter_login_energy_reward {
+    twitter_login_energy_reward = [prefs integerForKey:@"twitter_login_energy_reward"];
+    return twitter_login_energy_reward;
+}
+
+- (void)setTwitter_login_energy_reward: (int)newValue {
+    twitter_login_energy_reward=newValue;
+    [prefs setInteger:newValue forKey:@"twitter_login_energy_reward"];
+}
+
+- (int)twitter_login_exp_reward {
+    twitter_login_exp_reward = [prefs integerForKey:@"twitter_login_exp_reward"];
+    return twitter_login_exp_reward;
+}
+
+- (void)setTwitter_login_exp_reward: (int)newValue {
+    twitter_login_exp_reward=newValue;
+    [prefs setInteger:newValue forKey:@"twitter_login_exp_reward"];
+}
+
+-(void)saveDefaults
+{
+    [prefs synchronize];
+}
 
 
 @end

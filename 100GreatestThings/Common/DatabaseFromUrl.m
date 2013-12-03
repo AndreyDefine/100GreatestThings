@@ -15,6 +15,7 @@
 @interface DatabaseFromUrl()
 -(DatabaseFromUrl*)init;
 - (void) LoadDataFromJSONList:(id)response;
+- (void) LoadDataFromJSONSettings:(id)response;
 - (void) LoadDataFromJSONTask:(id)response  curlist:(Things_list*)things_list;
 - (void) SaveImageToDisk:(NSString*)value;
 @end
@@ -53,6 +54,23 @@ static NSString* momdDataBaseName=@"MainDataBase";
     return self;
 }
 
+#pragma mark - load settings from url
+- (void) GetSettings:(void (^)(void))responseBlock
+{
+    //необходимо грузить всё с сервера
+    EmbriaRequest* embriaRequest=[[EmbriaRequest alloc] init];
+    embriaRequest.makeAsync=true;
+    
+    embriaRequest.responseblock=^(EmbriaRequest* request,id response) {
+        [self LoadDataFromJSONSettings:response];
+        if(responseBlock)
+        {
+            responseBlock();
+        }
+    };
+    embriaRequest.useURLConnection=true;
+    [embriaRequest makeRequest:@"http://hgt.phereo.com/api/settings"];
+}
 
 #pragma mark - LoadSaveData from url
 - (void) LoadDataFromURL:(void (^)(void))responseBlock
@@ -63,7 +81,10 @@ static NSString* momdDataBaseName=@"MainDataBase";
     
     embriaRequest.responseblock=^(EmbriaRequest* request,id response) {
         [self LoadDataFromJSONList:response];
-        responseBlock();
+        if(responseBlock)
+        {
+            responseBlock();
+        }
     };
     embriaRequest.useURLConnection=true;
     [embriaRequest makeRequest:@"http://hgt.phereo.com/api/lists"];
@@ -137,6 +158,31 @@ static NSString* momdDataBaseName=@"MainDataBase";
         NSLog(@"%@",[jsonArray[i] objectForKey:@"image_url"]);
     }
 
+}
+
+- (void) LoadDataFromJSONSettings:(id)response
+{
+    if(!response)
+        return;
+    NSArray *jsonArray=(NSArray *)response;
+    NSString *defaultsName;
+    id value;
+    
+    CommonUserDefaults* commonuserDefaults=[CommonUserDefaults getSharedInstance];
+    
+    for (int i=0;i<jsonArray.count;i++)
+    {
+        defaultsName=[jsonArray[i] objectForKey:@"name"];
+        value=[jsonArray[i] objectForKey:@"value"];
+        if ([commonuserDefaults respondsToSelector:NSSelectorFromString(defaultsName)]){
+            //необходимо установить свойство
+            [commonuserDefaults setValue:value forKey:defaultsName];
+            NSLog(@"%@",defaultsName);
+        }
+
+    }
+    
+    [commonuserDefaults saveDefaults];
 }
 
 

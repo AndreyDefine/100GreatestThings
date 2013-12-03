@@ -2,7 +2,7 @@
 //  Things_list.h
 //  100GreatestThings
 //
-//  Created by baskakov on 29/11/13.
+//  Created by baskakov on 03/12/13.
 //  Copyright (c) 2013 MyCompanyName. All rights reserved.
 //
 
@@ -28,6 +28,7 @@
 @property (nonatomic, retain) NSString * task_complete_message;
 @property (nonatomic, retain) NSString * tasks_url;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * opened;
 @property (nonatomic, retain) NSSet *to_Things_task;
 @end
 

@@ -2,7 +2,7 @@
 //  Things_task.h
 //  100GreatestThings
 //
-//  Created by baskakov on 29/11/13.
+//  Created by baskakov on 03/12/13.
 //  Copyright (c) 2013 MyCompanyName. All rights reserved.
 //
 
@@ -14,12 +14,12 @@
 @interface Things_task : NSManagedObject
 
 @property (nonatomic, retain) NSString * description_;
+@property (nonatomic, retain) NSString * disk_image_url;
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSString * image_url;
 @property (nonatomic, retain) id links;
 @property (nonatomic, retain) NSString * subtitle;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * disk_image_url;
 @property (nonatomic, retain) NSSet *to_Things_list;
 @end
 

@@ -2,7 +2,7 @@
 //  Things_list.m
 //  100GreatestThings
 //
-//  Created by baskakov on 29/11/13.
+//  Created by baskakov on 03/12/13.
 //  Copyright (c) 2013 MyCompanyName. All rights reserved.
 //
 
@@ -27,6 +27,7 @@
 @dynamic task_complete_message;
 @dynamic tasks_url;
 @dynamic title;
+@dynamic opened;
 @dynamic to_Things_task;
 
 @end

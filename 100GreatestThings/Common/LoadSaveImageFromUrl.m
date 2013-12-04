@@ -7,16 +7,43 @@
 //
 
 #import "LoadSaveImageFromUrl.h"
+#import "NSString+Hash.h"
+
+@interface LoadSaveImageFromUrl()
+- (UIImage*) LoadAndSave:(NSString *)fileURL;
+@end
 
 @implementation LoadSaveImageFromUrl
 
 //Get Image From URL
--(UIImage *) getImageFromURL:(NSString *)fileURL {
+-(UIImage *) getImageFromURL:(NSString *)fileURL async:(BOOL)asynchronous{
     UIImage * result;
+    if(asynchronous)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self LoadAndSave:fileURL];
+        });
+
+    }
+    else
+    {
+        result=[self LoadAndSave:fileURL];
+    }
     
+    return result;
+}
+
+//load and save image
+- (UIImage*) LoadAndSave:(NSString *)fileURL
+{
+    UIImage * result;
+    NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:fileURL]];
     result = [UIImage imageWithData:data];
-    
+    NSString*extension=[fileURL pathExtension];
+    fileURL=[NSString stringWithFormat: @"%@.%@",[fileURL md5],extension];
+    //Save Image to Directory
+    [self saveImage:result withFileName:fileURL inDirectory:documentsDirectoryPath];
     return result;
 }
 

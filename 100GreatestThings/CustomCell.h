@@ -13,7 +13,7 @@ enum {
     CustomCellOpened = 1,
     CustomCellFacebook = 2,
     CustomCellTwitter = 3,
-    CustomCellExpa = 4,
+    CustomCellEnergy = 4,
     CustomCellLevel = 5
 };
 typedef NSUInteger CustomCellType;
@@ -22,11 +22,13 @@ typedef NSUInteger CustomCellType;
 @interface CustomCell : UITableViewCell
 {
 }
+
 @property (nonatomic, readwrite) CustomCellType customCellType;
 @property (nonatomic, strong) IBOutlet UILabel *labelListName;
+@property (nonatomic, strong) IBOutlet UILabel *labelProgress;
 @property (strong, nonatomic) Things_list *things_list;
 @property (nonatomic, strong) IBOutlet UIButton *buttonView1;
-@property (nonatomic, strong) IBOutlet UIView *viewBack1;
+@property (nonatomic, strong) IBOutlet UIImageView*viewShadow;
 @property (nonatomic, strong) IBOutlet UIImageView *imageView1;
 @property (nonatomic, retain) IBOutletCollection(UIImageView) NSArray *friendsCollection;
 @property (nonatomic, strong) IBOutlet UIImageView *imageLock;
@@ -37,6 +39,7 @@ typedef NSUInteger CustomCellType;
 
 @property (nonatomic, strong) IBOutlet UIView *roundRectView;
 @property (nonatomic, strong) IBOutlet UIView *lockView;
+@property (nonatomic, weak) UITableViewController* tableViewController;
 
 
 
@@ -48,7 +51,9 @@ typedef NSUInteger CustomCellType;
 -(void)buttonTouchFacebook:(id)sender;
 -(void)buttonTouchTwitter:(id)sender;
 -(void)buttonTouchLevel:(id)sender;
--(void)buttonTouchExpa:(id)sender;
+-(void)buttonTouchEnergy:(id)sender;
+
+-(void)updateTable;
 
 
 @end

@@ -100,6 +100,18 @@
                                                     <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oj8-hN-9Xq">
+                                                    <rect key="frame" x="238" y="13" width="54" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" title="DONE">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" backgroundImage="tasks_complete_button.png"/>
+                                                    <connections>
+                                                        <action selector="makeTask:" destination="ggv-p8-t5V" eventType="touchUpInside" id="tKD-LX-vog"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Is4-b7-az9">
@@ -121,6 +133,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="doneButton" destination="oj8-hN-9Xq" id="2Vz-3v-Roo"/>
                                     <outlet property="imageView1" destination="Is4-b7-az9" id="e4D-ZZ-URV"/>
                                     <outlet property="rowNumber" destination="ZPI-7R-3rt" id="1xC-D5-u6T"/>
                                     <outlet property="titleView1" destination="boG-J1-ert" id="OTR-2F-hX9"/>
@@ -151,6 +164,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="efO-X7-hce">
+                                        <rect key="frame" x="40" y="35" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                     <view contentMode="scaleToFill" id="Vi3-To-QNV">
                                         <rect key="frame" x="10" y="0.0" width="300" height="160"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -220,7 +237,7 @@
                                                 <color key="backgroundColor" red="0.96078431369999995" green="0.95686274510000002" blue="0.90196078430000004" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                             </view>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YB5-04-s7r">
-                                                <rect key="frame" x="6" y="55" width="45" height="33"/>
+                                                <rect key="frame" x="6" y="55" width="59" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
@@ -244,8 +261,9 @@
                     <connections>
                         <outlet property="imageView1" destination="VZI-7C-VWh" id="3cZ-FC-HCR"/>
                         <outlet property="labelListName" destination="aVI-82-5X1" id="v9u-fy-nUc"/>
+                        <outlet property="labelProgress" destination="YB5-04-s7r" id="VhL-Xo-SmM"/>
                         <outlet property="roundRectView" destination="Vi3-To-QNV" id="OCE-nc-Itr"/>
-                        <outlet property="viewBack1" destination="IdP-dS-PoR" id="oTb-k5-vDB"/>
+                        <outlet property="viewShadow" destination="efO-X7-hce" id="e4n-VS-lSl"/>
                         <outletCollection property="friendsCollection" destination="Kdf-cv-Jmx" id="dcY-xo-me3"/>
                         <outletCollection property="friendsCollection" destination="owr-aN-K8i" id="IHN-wG-O8x"/>
                         <outletCollection property="friendsCollection" destination="KzK-VF-2w5" id="Qbb-6N-35u"/>
@@ -279,10 +297,10 @@
             </objects>
             <point key="canvasLocation" x="1061" y="-1183"/>
         </scene>
-        <!--Expa Bar View Controller-->
+        <!--Energy Bar View Controller-->
         <scene sceneID="xiA-eo-Fs7">
             <objects>
-                <viewController storyboardIdentifier="ExpaBarController" autoresizesArchivedViewToFullSize="NO" id="JsK-nQ-36K" customClass="ExpaBarViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnergyBarController" autoresizesArchivedViewToFullSize="NO" id="JsK-nQ-36K" customClass="EnergyBarViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cGE-5M-2be">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
@@ -335,26 +353,21 @@
         <scene sceneID="9gN-L1-cCk">
             <objects>
                 <viewController storyboardIdentifier="CustomBarViewController" autoresizesArchivedViewToFullSize="NO" id="oIn-f2-mgL" sceneMemberID="viewController">
-                    <view key="view" autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="HK0-Gw-fux">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="HK0-Gw-fux">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Qst-ZF-63z">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="KvS-rU-08s">
                                 <rect key="frame" x="0.0" y="44" width="320" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expabar_shadow.png" id="ozM-i6-ctC">
                                 <rect key="frame" x="0.0" y="44" width="320" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
@@ -380,6 +393,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="IJp-oX-GAL">
+                                            <rect key="frame" x="40" y="26" width="240" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="iWk-nF-0FY">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -393,7 +410,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OBn-Uk-RK8">
-                                                            <rect key="frame" x="6" y="55" width="45" height="33"/>
+                                                            <rect key="frame" x="6" y="55" width="59" height="33"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
@@ -522,9 +539,10 @@
                                     <outlet property="labelLock" destination="bEG-t8-4Sn" id="h0L-4e-1oQ"/>
                                     <outlet property="labelLockLevel" destination="wjL-ax-fEH" id="Ui9-w3-Ju8"/>
                                     <outlet property="labelNrg" destination="WiQ-S1-JSd" id="nq8-6S-Ny6"/>
+                                    <outlet property="labelProgress" destination="OBn-Uk-RK8" id="4Ji-So-IU4"/>
                                     <outlet property="lockView" destination="KRV-BS-RwY" id="RvR-VV-0oa"/>
                                     <outlet property="roundRectView" destination="cq5-Td-t74" id="rL2-4V-zZo"/>
-                                    <outlet property="viewBack1" destination="iWk-nF-0FY" id="7O7-99-yrf"/>
+                                    <outlet property="viewShadow" destination="IJp-oX-GAL" id="cpn-Js-3d3"/>
                                     <outletCollection property="friendsCollection" destination="PwT-pU-NfU" id="4CK-Iz-LZf"/>
                                     <outletCollection property="friendsCollection" destination="6jg-uM-buB" id="woc-yJ-3xo"/>
                                     <outletCollection property="friendsCollection" destination="1Ch-Gg-Wh8" id="RXI-be-mex"/>
@@ -557,6 +575,7 @@
         <image name="expabar_thunder.png" width="17" height="25"/>
         <image name="menu_back.png" width="17" height="43"/>
         <image name="menu_hamburger.png" width="36" height="32"/>
+        <image name="tasks_complete_button.png" width="107" height="48"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

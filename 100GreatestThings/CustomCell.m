@@ -10,10 +10,12 @@
 #import "TasksTableViewController.h"
 #import "MyNavigationControllerViewController.h"
 #import "ListButton.h"
-#import "ExpaBarViewController.h"
+#import "EnergyBarViewController.h"
 #import "CustomProgressBar.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "CommonUserDefaults.h"
+#import "Things_task.h"
+#import "DatabaseFromUrl.h"
 
 @implementation CustomCell
 
@@ -21,7 +23,7 @@
 @synthesize things_list;
 @synthesize labelListName;
 @synthesize buttonView1;
-@synthesize viewBack1;
+@synthesize viewShadow;
 @synthesize roundRectView;
 @synthesize lockView;
 @synthesize imageView1;
@@ -33,7 +35,85 @@
 @synthesize navigationController;
 @synthesize storyboard;
 @synthesize friendsCollection;
+@synthesize labelProgress;
 
+@synthesize tableViewController;
+
+
+- (Things_list*)things_list {
+    return things_list;
+}
+
+- (void)awakeFromNib
+{
+}
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+    }
+    return self;
+}
+
+
+- (void)setThings_list: (Things_list*)newValue {
+    things_list=newValue;
+    //запишем все изменения в ячейку
+    //set cell type
+    if([things_list.level integerValue]>[CommonUserDefaults getSharedInstance].level){
+        //need level for cell
+        self.customCellType=CustomCellLevel;
+    }
+    else if(!things_list.opened)
+    {
+        self.customCellType=CustomCellEnergy;
+    }
+    else{
+        //normal cell
+        self.customCellType=CustomCellOpened;
+    }
+    
+    //set label progress
+    int progress=0;
+    NSArray *myArray = [things_list.to_Things_task allObjects];
+    if(myArray)
+    {
+        for (int i=0;i<myArray.count;i++)
+        {
+            if([((Things_task*)[myArray objectAtIndex:i]).complete boolValue]==YES)
+            {
+                progress++;
+            }
+        }
+        
+        progress=100*(float)progress/myArray.count;
+    }
+    
+    self.labelProgress.text=[[NSNumber numberWithInt:progress] stringValue];
+    
+    self.labelListName.text=things_list.title;
+    
+    UIImage *img = [[UIImage imageNamed:@"shadow.png"]
+                    resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 44, 14)];
+    
+    viewShadow.image=img;
+    
+    CGRect rect=CGRectMake(self.roundRectView.frame.origin.x-1, self.roundRectView.frame.origin.y, self.roundRectView.frame.size.width+2, self.roundRectView.frame.size.height+37);
+    viewShadow.frame=rect;
+    
+    //add image
+    [[DatabaseFromUrl getSharedInstance] LoadImage:things_list.image_url todisk:things_list.disk_image_url toimageview:self.imageView1];
+    
+    self.imageView1.layer.cornerRadius = 4.0;
+    self.imageView1.layer.masksToBounds = YES;
+    for(UIImageView *imageView in self.friendsCollection)
+    {
+        imageView.layer.cornerRadius = 4.0;
+        imageView.layer.masksToBounds = YES;
+    }
+
+}
 
 -(void)buttonTouched:(id)sender
 {
@@ -82,9 +162,9 @@
 {
 }
 
--(void)buttonTouchExpa:(id)sender
+-(void)buttonTouchEnergy:(id)sender
 {
-    int cost=40;
+    int cost=[things_list.energy_for_unlock intValue];
     UIAlertView* alert;
     if(cost>=[CommonUserDefaults getSharedInstance].energyrange)
     {
@@ -99,12 +179,20 @@
 
 //нажатие на вью
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    int cost=40;
     if(buttonIndex==0)
     {
-        [[ExpaBarViewController getSharedInstance] addexpa:-cost];
+        //убрали енергию
+        [[EnergyBarViewController getSharedInstance] addenergy:-[things_list.energy_for_unlock intValue]];
+        //добавили икспириенс
+        [CommonUserDefaults getSharedInstance].expa+=[things_list.exp_reward_for_unlock intValue];
+        //узнали какая текущая максимальная энергия
+        [[EnergyBarViewController getSharedInstance] setmaxenergy:[CommonUserDefaults getSharedInstance].maxenergy];
+        
         self.customCellType=CustomCellOpened;
         things_list.opened=[[NSNumber alloc]initWithBool:YES];
+        
+        //необходимо обновить все списки, так как могло что-то поменяться
+        [self updateTable];
     }
     
     if(buttonIndex==1)
@@ -113,21 +201,19 @@
     }
 }
 
+-(void)updateTable
+{
+     [self.tableViewController performSelector:@selector(reloadData)];
+}
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    self.roundRectView.layer.cornerRadius = 4.0;
-    self.roundRectView.layer.masksToBounds = YES;
-    for(UIImageView *imageView in self.friendsCollection)
-    {
-        imageView.layer.cornerRadius = 4.0;
-        imageView.layer.masksToBounds = YES;
-    }
 }
 
 -(void)setCustomCellType:(CustomCellType)value
 {
-    int cost=40;
+    int cost=[things_list.energy_for_unlock intValue];
     ((ListButton*)self.buttonView1).parentCell=self;
     customCellType=value;
     float lockalpha=0.8;
@@ -161,8 +247,8 @@
             labelNrg.text=@"";
             break;
             
-        case CustomCellExpa:
-            [self.buttonView1 addTarget:self action:@selector(buttonTouchExpa:) forControlEvents:UIControlEventTouchUpInside];
+        case CustomCellEnergy:
+            [self.buttonView1 addTarget:self action:@selector(buttonTouchEnergy:) forControlEvents:UIControlEventTouchUpInside];
             self.lockView.backgroundColor = [UIColor colorWithRed: (float)43/255.0f green: (float)146/255.0f blue: (float)223/255.0f alpha:lockalpha];
             imageLock.image=[UIImage imageNamed:@"lock_energy.png"];
             labelLockLevel.text=@"";

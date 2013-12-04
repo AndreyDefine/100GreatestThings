@@ -11,7 +11,7 @@
 @interface LoadSaveImageFromUrl : NSObject
 
 
--(UIImage *) getImageFromURL:(NSString *)fileURL;
+-(UIImage *) getImageFromURL:(NSString *)fileURL async:(BOOL)asynchronous;
 -(void) saveImage:(UIImage *)image withFileName:(NSString *)imageName inDirectory:(NSString *)directoryPath;
 -(UIImage *) loadImage:(NSString *)fileName inDirectory:(NSString *)directoryPath;
 

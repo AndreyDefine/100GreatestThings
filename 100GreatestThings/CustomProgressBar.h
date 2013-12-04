@@ -13,6 +13,7 @@
     UIImageView * imageViewA;
     UIImageView * imageViewB;
     UILabel* expirience;
+    int _range;
 }
 
 @property (nonatomic,readwrite) int fullRange;

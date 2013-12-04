@@ -60,12 +60,11 @@
 
 #pragma mark - Table view data source
 
-
-/*- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (void)reloadData
 {
-    [self configureCellTop:(CustomCell*)self.headerCell atIndexPath:nil];
-    return self.headerCell;
-}*/
+    [self.tableView reloadData];
+    [self configureCellTop:(CustomCell*)self.headerCell atIndexPath:nil];    
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -85,64 +84,21 @@
     cell.navigationController=self.navigationController;
     cell.storyboard=self.storyboard;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    // Clearing out cell background
     
-    ((ListButton*)cell.buttonView1).parentCell=cell;
-    
-    cell.labelListName.text=self.things_list.title;
-    
-    UIImage *img = [[UIImage imageNamed:@"shadow.png"]
-                    resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 44, 14)];
-    UIImageView* imageViewShadow = [[UIImageView alloc] initWithImage:img];
-    
-    CGRect rect=CGRectMake(cell.roundRectView.frame.origin.x-1, cell.roundRectView.frame.origin.y, cell.roundRectView.frame.size.width+2, cell.roundRectView.frame.size.height+37);
-    imageViewShadow.frame=rect;
-    
-    [cell.viewBack1 addSubview:imageViewShadow];
-    [cell.viewBack1 sendSubviewToBack:imageViewShadow];
-    
-    //add image to first button
-    NSString*imgname=self.things_list.disk_image_url;
-    LoadSaveImageFromUrl *loadSaveImageFromUrl=[[LoadSaveImageFromUrl alloc]init];
-    NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    
-    UIImage *image=[[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:imgname];
-    if(!image)
-    {
-        image = [loadSaveImageFromUrl loadImage:imgname inDirectory:documentsDirectoryPath];
-    }
-    if (image){
-        [[SDImageCache sharedImageCache] storeImage:image forKey:imgname];
-        [cell.imageView1 setImage:image];
-    }
+    cell.things_list=things_list;
 }
 
 - (void)configureCell:(TaskCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
-    Things_task *tasks_list;// = [_fetchedResultsController objectAtIndexPath:indexPath];
+    Things_task *things_task;// = [_fetchedResultsController objectAtIndexPath:indexPath];
+    cell.tableViewController=self;
     
     NSArray *myArray = [things_list.to_Things_task allObjects];
     
-    tasks_list=[myArray objectAtIndex:indexPath.row];
+    things_task=[myArray objectAtIndex:indexPath.row];
     
-    
-    cell.titleView1.text=tasks_list.title;
+    cell.things_task=things_task;
     cell.rowNumber.text=[[NSNumber numberWithInteger:indexPath.row+1] stringValue];
-    
-    //image
-    LoadSaveImageFromUrl *loadSaveImageFromUrl=[[LoadSaveImageFromUrl alloc]init];
-    NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString*imgname=tasks_list.disk_image_url;
-    UIImage *image=[[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:imgname];
-    if(!image)
-    {
-        image = [loadSaveImageFromUrl loadImage:imgname inDirectory:documentsDirectoryPath];
-    }
-    if (image){
-        [[SDImageCache sharedImageCache] storeImage:image forKey:imgname];
-        
-        [cell.imageView1 setImage:image];
-    }
 }
 
 

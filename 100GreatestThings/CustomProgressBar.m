@@ -12,11 +12,22 @@
 
 -(id)init;
 -(id)initWithFrame:(CGRect)frame;
--(void)setExpiriencePosition:(int)range;
+-(void)setEnergyPosition:(int)range;
 
 @end
 
 @implementation CustomProgressBar
+
+@synthesize fullRange;
+
+- (int)fullRange {
+    return fullRange;
+}
+
+- (void)setFullRange: (int)newValue {
+    fullRange=newValue;
+    [self setEnergyPosition:_range];
+}
 
 +(CustomProgressBar*)addProgressBarInFrame:(CGRect)frame onView:(id)inview withRange:(int)range image1:(NSString*)imagename1 imagebackground:(NSString*)imagenamebackground fullRange:(int)infullRange
 {
@@ -36,9 +47,11 @@
         //label
         newCustomProgressBar->expirience=[[UILabel alloc]initWithFrame:CGRectMake(0,0,0,frame.size.height)];
         newCustomProgressBar->expirience.numberOfLines = 1;
+        newCustomProgressBar->expirience.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0];
         newCustomProgressBar->expirience.textColor = [UIColor whiteColor];
         [newCustomProgressBar->expirience setFont:[UIFont boldSystemFontOfSize:12]];
-        [newCustomProgressBar setExpiriencePosition:range];
+        newCustomProgressBar->_range=range;
+        [newCustomProgressBar setEnergyPosition:newCustomProgressBar->_range];
         
         [newCustomProgressBar addSubview:newCustomProgressBar->imageViewA];
         [newCustomProgressBar addSubview:newCustomProgressBar->imageViewB];
@@ -48,7 +61,7 @@
     return newCustomProgressBar;
 }
 
--(void)setExpiriencePosition:(int)range;
+-(void)setEnergyPosition:(int)range;
 {
     if(range>self.fullRange){
         range=self.fullRange;
@@ -91,7 +104,8 @@
 
 -(void)setProgress:(int)range
 {
-    [self setExpiriencePosition:range];
+    _range=range;
+    [self setEnergyPosition:_range];
 }
 
 

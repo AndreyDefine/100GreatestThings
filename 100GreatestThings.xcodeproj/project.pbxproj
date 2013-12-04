@@ -18,7 +18,7 @@
 		730612D0184888C70084E9DE /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730612CF184888C70084E9DE /* TasksTableViewController.m */; };
 		730612DF1848911B0084E9DE /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730612DE1848911B0084E9DE /* TaskCell.m */; };
 		730612EE1848DA9F0084E9DE /* expabar_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 730612EC1848DA9F0084E9DE /* expabar_plus.png */; };
-		730613331848E10E0084E9DE /* ExpaBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730613321848E10E0084E9DE /* ExpaBarViewController.m */; };
+		730613331848E10E0084E9DE /* EnergyBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730613321848E10E0084E9DE /* EnergyBarViewController.m */; };
 		7306133A184C824F0084E9DE /* expabar_progressdone.png in Resources */ = {isa = PBXBuildFile; fileRef = 73061338184C824F0084E9DE /* expabar_progressdone.png */; };
 		7306133B184C824F0084E9DE /* expabar_progressnotdone.png in Resources */ = {isa = PBXBuildFile; fileRef = 73061339184C824F0084E9DE /* expabar_progressnotdone.png */; };
 		7306133E184C86610084E9DE /* CustomProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7306133D184C86610084E9DE /* CustomProgressBar.m */; };
@@ -48,7 +48,9 @@
 		730613A0184DBFEA0084E9DE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7306139F184DBFEA0084E9DE /* Security.framework */; };
 		730613A9184DD04D0084E9DE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730613A8184DD04D0084E9DE /* FacebookSDK.framework */; };
 		730613AC184E09690084E9DE /* Things_list.m in Sources */ = {isa = PBXBuildFile; fileRef = 730613AB184E09690084E9DE /* Things_list.m */; };
-		730613AF184E096A0084E9DE /* Things_task.m in Sources */ = {isa = PBXBuildFile; fileRef = 730613AE184E096A0084E9DE /* Things_task.m */; };
+		730613B5184F2DC70084E9DE /* Things_level.m in Sources */ = {isa = PBXBuildFile; fileRef = 730613B4184F2DC70084E9DE /* Things_level.m */; };
+		730613B7184F50B00084E9DE /* tasks_complete_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 730613B6184F50B00084E9DE /* tasks_complete_button.png */; };
+		730613C0184F542D0084E9DE /* Things_task.m in Sources */ = {isa = PBXBuildFile; fileRef = 730613BF184F542D0084E9DE /* Things_task.m */; };
 		736AB1651846069F00F227FA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736AB1641846069F00F227FA /* CoreData.framework */; };
 		7384C77118473F7A00F59D9D /* FirstLoadingViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7384C77018473F7A00F59D9D /* FirstLoadingViewViewController.m */; };
 		7384C774184755DB00F59D9D /* DatabaseFromUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7384C773184755DB00F59D9D /* DatabaseFromUrl.m */; };
@@ -97,8 +99,8 @@
 		730612DD1848911B0084E9DE /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskCell.h; path = 100GreatestThings/TaskCell.h; sourceTree = SOURCE_ROOT; };
 		730612DE1848911B0084E9DE /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskCell.m; path = 100GreatestThings/TaskCell.m; sourceTree = SOURCE_ROOT; };
 		730612EC1848DA9F0084E9DE /* expabar_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expabar_plus.png; sourceTree = "<group>"; };
-		730613311848E10E0084E9DE /* ExpaBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpaBarViewController.h; sourceTree = "<group>"; };
-		730613321848E10E0084E9DE /* ExpaBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpaBarViewController.m; sourceTree = "<group>"; };
+		730613311848E10E0084E9DE /* EnergyBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyBarViewController.h; sourceTree = "<group>"; };
+		730613321848E10E0084E9DE /* EnergyBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyBarViewController.m; sourceTree = "<group>"; };
 		73061338184C824F0084E9DE /* expabar_progressdone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expabar_progressdone.png; sourceTree = "<group>"; };
 		73061339184C824F0084E9DE /* expabar_progressnotdone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expabar_progressnotdone.png; sourceTree = "<group>"; };
 		7306133C184C86610084E9DE /* CustomProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomProgressBar.h; sourceTree = "<group>"; };
@@ -137,8 +139,11 @@
 		730613A8184DD04D0084E9DE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		730613AA184E09690084E9DE /* Things_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Things_list.h; sourceTree = "<group>"; };
 		730613AB184E09690084E9DE /* Things_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Things_list.m; sourceTree = "<group>"; };
-		730613AD184E096A0084E9DE /* Things_task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Things_task.h; sourceTree = "<group>"; };
-		730613AE184E096A0084E9DE /* Things_task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Things_task.m; sourceTree = "<group>"; };
+		730613B3184F2DC70084E9DE /* Things_level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Things_level.h; sourceTree = "<group>"; };
+		730613B4184F2DC70084E9DE /* Things_level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Things_level.m; sourceTree = "<group>"; };
+		730613B6184F50B00084E9DE /* tasks_complete_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tasks_complete_button.png; sourceTree = "<group>"; };
+		730613BE184F542D0084E9DE /* Things_task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Things_task.h; sourceTree = "<group>"; };
+		730613BF184F542D0084E9DE /* Things_task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Things_task.m; sourceTree = "<group>"; };
 		736AB1641846069F00F227FA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7384C76F18473F7900F59D9D /* FirstLoadingViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstLoadingViewViewController.h; sourceTree = "<group>"; };
 		7384C77018473F7A00F59D9D /* FirstLoadingViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstLoadingViewViewController.m; sourceTree = "<group>"; };
@@ -255,8 +260,8 @@
 				016738DF15C014DA00F6861E /* AppDelegate.m */,
 				73CFAF4718463C4D008A0EA8 /* ListButton.h */,
 				73CFAF4818463C4D008A0EA8 /* ListButton.m */,
-				730613311848E10E0084E9DE /* ExpaBarViewController.h */,
-				730613321848E10E0084E9DE /* ExpaBarViewController.m */,
+				730613311848E10E0084E9DE /* EnergyBarViewController.h */,
+				730613321848E10E0084E9DE /* EnergyBarViewController.m */,
 				7306133C184C86610084E9DE /* CustomProgressBar.h */,
 				7306133D184C86610084E9DE /* CustomProgressBar.m */,
 				73D3B0111833B16900CADAD4 /* Images.xcassets */,
@@ -343,6 +348,7 @@
 		73EE3AE518448F5C00A24757 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				730613B6184F50B00084E9DE /* tasks_complete_button.png */,
 				73061348184CCB240084E9DE /* lock_energy.png */,
 				73061349184CCB240084E9DE /* lock_facebook.png */,
 				7306134A184CCB240084E9DE /* lock_twitter.png */,
@@ -405,10 +411,12 @@
 			isa = PBXGroup;
 			children = (
 				73EE3B9F1845FB4400A24757 /* MainDataBase.xcdatamodeld */,
-				730613AD184E096A0084E9DE /* Things_task.h */,
-				730613AE184E096A0084E9DE /* Things_task.m */,
+				730613B3184F2DC70084E9DE /* Things_level.h */,
+				730613B4184F2DC70084E9DE /* Things_level.m */,
 				730613AA184E09690084E9DE /* Things_list.h */,
 				730613AB184E09690084E9DE /* Things_list.m */,
+				730613BE184F542D0084E9DE /* Things_task.h */,
+				730613BF184F542D0084E9DE /* Things_task.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -469,6 +477,7 @@
 				73061397184DBFB50084E9DE /* AddDevice.html in Resources */,
 				73EE3AF518448F5C00A24757 /* 6.jpeg in Resources */,
 				7306133B184C824F0084E9DE /* expabar_progressnotdone.png in Resources */,
+				730613B7184F50B00084E9DE /* tasks_complete_button.png in Resources */,
 				73EE3AF018448F5C00A24757 /* 1.jpeg in Resources */,
 				016738DA15C014DA00F6861E /* InfoPlist.strings in Resources */,
 				7306134C184CCB240084E9DE /* lock_energy.png in Resources */,
@@ -505,7 +514,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				730613331848E10E0084E9DE /* ExpaBarViewController.m in Sources */,
+				730613331848E10E0084E9DE /* EnergyBarViewController.m in Sources */,
+				730613B5184F2DC70084E9DE /* Things_level.m in Sources */,
 				73EE3B911845EF3400A24757 /* CommonUserDefaults.m in Sources */,
 				73061393184DBFB50084E9DE /* MKSKSubscriptionProduct.m in Sources */,
 				7306139C184DBFB50084E9DE /* VerificationController.m in Sources */,
@@ -515,11 +525,11 @@
 				730612D0184888C70084E9DE /* TasksTableViewController.m in Sources */,
 				73D3B0151834BCC100CADAD4 /* MyNavigationControllerViewController.m in Sources */,
 				73C78938183E44C200BD9C8E /* TWTSideMenuViewController.m in Sources */,
+				730613C0184F542D0084E9DE /* Things_task.m in Sources */,
 				730613AC184E09690084E9DE /* Things_list.m in Sources */,
 				7384C774184755DB00F59D9D /* DatabaseFromUrl.m in Sources */,
 				016738E015C014DA00F6861E /* AppDelegate.m in Sources */,
 				73061395184DBFB50084E9DE /* MKStoreManager.m in Sources */,
-				730613AF184E096A0084E9DE /* Things_task.m in Sources */,
 				73CFAF4918463C4D008A0EA8 /* ListButton.m in Sources */,
 				73061391184DBFB50084E9DE /* SFHFKeychainUtils.m in Sources */,
 				730612DF1848911B0084E9DE /* TaskCell.m in Sources */,

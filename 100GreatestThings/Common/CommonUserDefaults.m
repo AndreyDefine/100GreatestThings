@@ -7,6 +7,7 @@
 //
 
 #import "CommonUserDefaults.h"
+#import "DatabaseFromUrl.h"
 @interface CommonUserDefaults()
 -(CommonUserDefaults*)init;
 @end
@@ -14,6 +15,7 @@
 @implementation CommonUserDefaults
 @synthesize flagNotFirstLaunch;
 @synthesize level;
+@synthesize expa;
 @synthesize maxenergy;
 @synthesize energyrange;
 @synthesize lastlaunchdate;
@@ -74,6 +76,25 @@ static CommonUserDefaults *sCommonUserDefaults = nil;
     [prefs setInteger:newValue forKey:@"level"];
 }
 
+- (int)expa {
+    expa = [prefs integerForKey:@"expa"];
+    return expa;
+}
+
+- (void)setExpa: (int)newValue {
+    expa=newValue;
+    //проверим может левел ап проверим сколько нужно для следующего уровня
+    int neededexpa=[[DatabaseFromUrl getSharedInstance] getExpaForLevel:level+1];
+    while(neededexpa>0&&expa>=neededexpa)
+    {
+        //level up
+        self.level++;
+        self.maxenergy=[[DatabaseFromUrl getSharedInstance] getEnergyForLevel:level];
+        neededexpa=[[DatabaseFromUrl getSharedInstance] getExpaForLevel:level+1];
+    }
+    [prefs setInteger:newValue forKey:@"expa"];
+}
+
 - (float)maxenergy {
     maxenergy = [prefs floatForKey:@"maxenergy"];
     return maxenergy;
@@ -85,16 +106,20 @@ static CommonUserDefaults *sCommonUserDefaults = nil;
 }
 
 - (float)energyrange {
+    if(energyrange>self.maxenergy)
+    {
+        energyrange=maxenergy;
+    }
     energyrange = [prefs floatForKey:@"energyrange"];
     return energyrange;
 }
 
 - (void)setEnergyrange: (float)newValue {
-    energyrange=newValue;
-    if(energyrange>maxenergy)
+    if(newValue>maxenergy)
     {
-        energyrange=maxenergy;
+        newValue=maxenergy;
     }
+    energyrange=newValue;
     [prefs setFloat:newValue forKey:@"energyrange"];
     
 }

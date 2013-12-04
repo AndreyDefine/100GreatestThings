@@ -16,6 +16,7 @@
 #import "ListButton.h"
 #import "DatabaseFromUrl.h"
 #import "CommonUserDefaults.h"
+#import "Things_task.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -61,6 +62,12 @@
     [self connectToDataBase];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self reloadData];
+}
+
 
 
 -(void)showMenu:(id)sender
@@ -80,6 +87,11 @@
 
 #pragma mark - Table view data source
 
+- (void)reloadData
+{
+    [self.tableView reloadData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -95,53 +107,13 @@
 
 - (void)configureCell:(CustomCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Things_list *things_list = [_fetchedResultsController objectAtIndexPath:indexPath];
-    cell.things_list=things_list;
+    cell.tableViewController=self;
     
     cell.navigationController=self.navigationController;
     cell.storyboard=self.storyboard;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //set cell type
-    if([things_list.level integerValue]>[CommonUserDefaults getSharedInstance].level){
-        //need level for cell
-        cell.customCellType=CustomCellLevel;
-    }
-    else if(!things_list.opened)
-    {
-        cell.customCellType=CustomCellExpa;
-    }
-    else{
-        //normal cell
-        cell.customCellType=CustomCellOpened;
-    }
-    
-    cell.labelListName.text=things_list.title;
-    
-    UIImage *img = [[UIImage imageNamed:@"shadow.png"]
-                    resizableImageWithCapInsets:UIEdgeInsetsMake(14, 14, 44, 14)];
-    UIImageView* imageViewShadow = [[UIImageView alloc] initWithImage:img];
-    
-    CGRect rect=CGRectMake(cell.roundRectView.frame.origin.x-1, cell.roundRectView.frame.origin.y, cell.roundRectView.frame.size.width+2, cell.roundRectView.frame.size.height+37);
-    imageViewShadow.frame=rect;
-    
-    [cell.viewBack1 addSubview:imageViewShadow];
-    [cell.viewBack1 sendSubviewToBack:imageViewShadow];
-    
-    //add image to first button
-    NSString*imgname=things_list.disk_image_url;
-    LoadSaveImageFromUrl *loadSaveImageFromUrl=[[LoadSaveImageFromUrl alloc]init];
-    NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    
-    UIImage *image=[[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:imgname];
-    if(!image)
-    {
-        image = [loadSaveImageFromUrl loadImage:imgname inDirectory:documentsDirectoryPath];
-    }
-    if (image){
-        [[SDImageCache sharedImageCache] storeImage:image forKey:imgname];
-        [cell.imageView1 setImage:image];
-    }
+    cell.things_list=things_list;
 }
-
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

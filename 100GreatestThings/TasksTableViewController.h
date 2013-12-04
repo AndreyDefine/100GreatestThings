@@ -18,5 +18,6 @@
 
 
 @property (nonatomic, strong) IBOutlet UITableViewCell *headerCell;
+- (void)reloadData;
 
 @end

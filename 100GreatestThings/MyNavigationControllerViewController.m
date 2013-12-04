@@ -44,7 +44,7 @@
     self.customBar=customBarController.view;
     
     //set expaCustomBarViewController
-    UIViewController *expacustomBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"ExpaBarController"];
+    UIViewController *expacustomBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"EnergyBarController"];
     self.expaCustomBar=expacustomBarController.view;
     
     CGRect screenBounds = [UIScreen mainScreen].bounds ;
@@ -61,11 +61,9 @@
     }
     [self.view addSubview:expaCustomBar];
     [self.view addSubview:customBar];
-    [self.view addSubview:buttonMenu];
-    [self.view addSubview:buttonBack];
+    [customBar addSubview:buttonMenu];
+    [customBar addSubview:buttonBack];
     buttonBack.hidden=true;
-    
-    [[DatabaseFromUrl getSharedInstance] GetSettings:nil];
     
     //проверим первая ли это загрузка
     if([CommonUserDefaults getSharedInstance].flagNotFirstLaunch==NO)
@@ -76,6 +74,9 @@
         
         FirstLoadingViewViewController *myViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstLoadingView"];
         [self pushViewController:myViewController animated:YES];
+        
+        [[DatabaseFromUrl getSharedInstance] GetSettings:nil];
+        [[DatabaseFromUrl getSharedInstance] GetLevels:nil];
         
         [[DatabaseFromUrl getSharedInstance] LoadDataFromURL:^(void){
             [CommonUserDefaults getSharedInstance].flagNotFirstLaunch=YES;

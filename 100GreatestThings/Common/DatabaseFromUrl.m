@@ -7,17 +7,19 @@
 //
 #import "DatabaseFromUrl.h"
 #import "Things_list.h"
+#import "Things_level.h"
 #import "NSString+Hash.h"
 #import "LoadSaveImageFromUrl.h"
 #import "EmbriaRequest.h"
 #import "CommonUserDefaults.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface DatabaseFromUrl()
 -(DatabaseFromUrl*)init;
 - (void) LoadDataFromJSONList:(id)response;
 - (void) LoadDataFromJSONSettings:(id)response;
+- (void) LoadDataFromJSONLevels:(id)response;
 - (void) LoadDataFromJSONTask:(id)response  curlist:(Things_list*)things_list;
-- (void) SaveImageToDisk:(NSString*)value;
 @end
 
 @implementation DatabaseFromUrl
@@ -54,6 +56,66 @@ static NSString* momdDataBaseName=@"MainDataBase";
     return self;
 }
 
+-(int)getExpaForLevel:(int)level
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    Things_level *things_level;
+    int exp=0;
+    
+    //проверить содержится ли объект в базе
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Things_level" inManagedObjectContext:context];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"level == %d", level];
+    [request setPredicate:predicate];
+        
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"level" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:sortDescriptors];
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+        
+    //объект есть в базе
+    if(result.count>0)
+    {
+        things_level=result[0];
+    }
+    if(things_level){
+        exp=[things_level.exp intValue];
+    }
+    return exp;
+}
+
+-(int)getEnergyForLevel:(int)level
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    Things_level *things_level;
+    int exp=0;
+    
+    //проверить содержится ли объект в базе
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Things_level" inManagedObjectContext:context];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"level == %d", level];
+    [request setPredicate:predicate];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"level" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:sortDescriptors];
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    
+    //объект есть в базе
+    if(result.count>0)
+    {
+        things_level=result[0];
+    }
+    if(things_level){
+        exp=[things_level.max_energy intValue];
+    }
+    return exp;
+}
+
 #pragma mark - load settings from url
 - (void) GetSettings:(void (^)(void))responseBlock
 {
@@ -70,6 +132,24 @@ static NSString* momdDataBaseName=@"MainDataBase";
     };
     embriaRequest.useURLConnection=true;
     [embriaRequest makeRequest:@"http://hgt.phereo.com/api/settings"];
+}
+
+#pragma mark - load levels from url
+- (void) GetLevels:(void (^)(void))responseBlock
+{
+    //необходимо грузить всё с сервера
+    EmbriaRequest* embriaRequest=[[EmbriaRequest alloc] init];
+    embriaRequest.makeAsync=true;
+    
+    embriaRequest.responseblock=^(EmbriaRequest* request,id response) {
+        [self LoadDataFromJSONLevels:response];
+        if(responseBlock)
+        {
+            responseBlock();
+        }
+    };
+    embriaRequest.useURLConnection=true;
+    [embriaRequest makeRequest:@"http://hgt.phereo.com/api/levels"];
 }
 
 #pragma mark - LoadSaveData from url
@@ -90,23 +170,47 @@ static NSString* momdDataBaseName=@"MainDataBase";
     [embriaRequest makeRequest:@"http://hgt.phereo.com/api/lists"];
 }
 
-- (void) SaveImageToDisk:(id)value
+-(void)LoadImage:(NSString*)image_url todisk:(NSString*)disk_image_url toimageview:(UIImageView*)imageview
 {
-    if (value == nil||value == [NSNull null]){
-        return;
-    }
-    
-    NSString* imgname=value;
+    [imageview setImage:nil];
     LoadSaveImageFromUrl *loadSaveImageFromUrl=[[LoadSaveImageFromUrl alloc]init];
     NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
-    //Get Image From URL
-    UIImage * imageFromURL = [loadSaveImageFromUrl getImageFromURL:imgname];
+    UIImage *image=[[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:disk_image_url];
+    if(!image)
+    {
+        image = [loadSaveImageFromUrl loadImage:disk_image_url inDirectory:documentsDirectoryPath];
+    }
+    if(!image)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage *image;
+            image=[self SaveImageToDisk:image_url];
+            [[SDImageCache sharedImageCache] storeImage:image forKey:disk_image_url];
+            
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [imageview setImage:image];
+                });
+            }
+        });
+    }
+    if (image){
+        [[SDImageCache sharedImageCache] storeImage:image forKey:disk_image_url];
+        [imageview setImage:image];
+    }
+}
+
+- (UIImage*) SaveImageToDisk:(id)value
+{
+    if (value == nil||value == [NSNull null]){
+        return nil;
+    }
     
-    NSString*extension=[imgname pathExtension];
-    imgname=[NSString stringWithFormat: @"%@.%@",[imgname md5],extension];
-    //Save Image to Directory
-    [loadSaveImageFromUrl saveImage:imageFromURL withFileName:imgname inDirectory:documentsDirectoryPath];
+    LoadSaveImageFromUrl *loadSaveImageFromUrl=[[LoadSaveImageFromUrl alloc]init];
+    
+    //Get Image From URL and save asynchonous
+    return [loadSaveImageFromUrl getImageFromURL:value async:false];
 }
 
 - (void) LoadDataFromJSONTask:(id)response  curlist:(Things_list*)things_list
@@ -154,8 +258,7 @@ static NSString* momdDataBaseName=@"MainDataBase";
         
         [self safeSetValuesForKeysWithDictionary:jsonArray[i] object:things_task];
         
-        [self SaveImageToDisk:[jsonArray[i] objectForKey:@"image_url"]];
-        NSLog(@"%@",[jsonArray[i] objectForKey:@"image_url"]);
+        //[self SaveImageToDisk:[jsonArray[i] objectForKey:@"image_url"]];
     }
 
 }
@@ -183,6 +286,59 @@ static NSString* momdDataBaseName=@"MainDataBase";
     }
     
     [commonuserDefaults saveDefaults];
+}
+
+- (void) LoadDataFromJSONLevels:(id)response
+{
+    if(!response)
+        return;
+    //NSLog(@"%@",response);
+    NSArray *jsonArray=(NSArray *)response;
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    Things_level *things_level;
+    
+    for(int i=0;i<jsonArray.count;i++)
+    {
+        //проверить содержится ли объект в базе
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Things_level" inManagedObjectContext:context];
+        [request setEntity:entity];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"level == %@", [jsonArray[i] objectForKey:@"level"]];
+        [request setPredicate:predicate];
+        
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"level" ascending:YES];
+        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+        [request setSortDescriptors:sortDescriptors];
+        NSError *error = nil;
+        NSArray *result = [context executeFetchRequest:request error:&error];
+        
+        //объект есть в базе
+        if(result.count>0)
+        {
+            things_level=result[0];
+        }
+        else
+        {
+            
+            things_level = [NSEntityDescription
+                           insertNewObjectForEntityForName:@"Things_level"
+                           inManagedObjectContext:context];
+        }
+        
+        [self safeSetValuesForKeysWithDictionary:jsonArray[i] object:things_level];
+        
+        error = nil;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+        else
+        {
+            NSLog(@"All saved to database.");
+        }
+
+    }
+
 }
 
 
@@ -220,7 +376,7 @@ static NSString* momdDataBaseName=@"MainDataBase";
         }
         
         //load images
-        [self SaveImageToDisk:[jsonArray[i] objectForKey:@"image_url"]];
+        //[self SaveImageToDisk:[jsonArray[i] objectForKey:@"image_url"]];
     }
     
     NSError *error;

@@ -2,7 +2,7 @@
 //  Things_task.h
 //  100GreatestThings
 //
-//  Created by baskakov on 03/12/13.
+//  Created by baskakov on 04/12/13.
 //  Copyright (c) 2013 MyCompanyName. All rights reserved.
 //
 
@@ -20,6 +20,7 @@
 @property (nonatomic, retain) id links;
 @property (nonatomic, retain) NSString * subtitle;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * complete;
 @property (nonatomic, retain) NSSet *to_Things_list;
 @end
 

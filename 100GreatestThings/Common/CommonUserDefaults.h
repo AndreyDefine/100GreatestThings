@@ -18,6 +18,7 @@
 
 @property (nonatomic) BOOL flagNotFirstLaunch;
 @property (nonatomic) int level;
+@property (nonatomic) int expa;
 @property (nonatomic) float maxenergy;
 @property (nonatomic) float energyrange;
 @property (nonatomic,strong) NSDate* lastlaunchdate;

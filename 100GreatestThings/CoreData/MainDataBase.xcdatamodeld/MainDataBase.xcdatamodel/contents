@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Things_level" representedClassName="Things_level" syncable="YES">
+        <attribute name="exp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="max_energy" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Things_list" representedClassName="Things_list" syncable="YES">
         <attribute name="badge_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="description_" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,6 +17,7 @@
         <attribute name="image_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="network_link_required" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="opened" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="task_complete_message" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tasks_url" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,6 +25,7 @@
         <relationship name="to_Things_task" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Things_task" inverseName="to_Things_list" inverseEntity="Things_task" syncable="YES"/>
     </entity>
     <entity name="Things_task" representedClassName="Things_task" syncable="YES">
+        <attribute name="complete" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="description_" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="disk_image_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -29,7 +36,8 @@
         <relationship name="to_Things_list" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Things_list" inverseName="to_Things_task" inverseEntity="Things_list" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Things_task" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Things_list" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Things_list" positionX="324" positionY="-129" width="128" height="300"/>
+        <element name="Things_task" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Things_level" positionX="-270" positionY="-144" width="128" height="88"/>
     </elements>
 </model>

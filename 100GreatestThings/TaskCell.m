@@ -59,11 +59,40 @@
     [super layoutSubviews];
 }
 
+-(void)testRequestAlex
+{
+    NSURL *url=[NSURL URLWithString: @"http://dev.petrosoft.su:60001/issues/create"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    NSURLResponse* response;
+    NSError* error = nil;
+    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"data%@",str);
+    
+    /*NSLog(@"%@",data st);
+    var request = new RestRequest ("issues/create", Method.POST);
+    request.AddCookie (_userTokenCookieName, Config.UserData.UserToken);
+    request.AddParameter ("issue[custom_address]", issue.CustomAddress);
+    if (issue.Latitude_cli != 0) {
+        request.AddParameter ("issue[latitude_cli]", issue.Latitude_cli.ToString (CultureInfo.InvariantCulture));
+        request.AddParameter ("issue[longitude_cli]", issue.Longitude_cli.ToString (CultureInfo.InvariantCulture));
+    }
+    request.AddParameter ("issue[rating]", issue.Rating);
+    request.AddParameter ("issue[eventdate]", issue.EventDate.ToString ("dd.MM.yyyy"));
+    request.AddParameter ("issue[comment]", issue.Comment);
+    _userTokenCookieName = "remember_user_token";*/
+}
+
 -(IBAction)makeTask:(id)sender
 {
     self.doneButton.selected=!self.doneButton.selected;
     self.things_task.complete=[NSNumber numberWithBool:self.doneButton.selected];
     [self updateTable];
+    [self testRequestAlex];
 }
 
 -(void)updateTable

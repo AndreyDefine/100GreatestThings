@@ -23,7 +23,7 @@
                     <rect key="frame" x="9" y="16" width="10" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="menu_back.png">
+                    <state key="normal" title="  " image="menu_back.png">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -448,6 +448,11 @@
                                                                     <color key="textColor" red="0.19215686269999999" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <view contentMode="scaleToFill" id="ILe-Gb-frq">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="160"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                </view>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wjL-ax-fEH">
                                                                     <rect key="frame" x="20" y="59" width="260" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -544,6 +549,7 @@
                                     <outlet property="labelNrg" destination="WiQ-S1-JSd" id="nq8-6S-Ny6"/>
                                     <outlet property="labelProgress" destination="OBn-Uk-RK8" id="4Ji-So-IU4"/>
                                     <outlet property="lockView" destination="KRV-BS-RwY" id="RvR-VV-0oa"/>
+                                    <outlet property="lockViewLvl" destination="ILe-Gb-frq" id="1aH-sb-pxB"/>
                                     <outlet property="roundRectView" destination="cq5-Td-t74" id="rL2-4V-zZo"/>
                                     <outlet property="viewShadow" destination="IJp-oX-GAL" id="cpn-Js-3d3"/>
                                     <outletCollection property="friendsCollection" destination="PwT-pU-NfU" id="4CK-Iz-LZf"/>

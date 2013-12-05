@@ -150,7 +150,6 @@
         buttonBack.hidden=false;
         buttonMenu.hidden=true;
     }
-
 }
 
 - (void)didReceiveMemoryWarning

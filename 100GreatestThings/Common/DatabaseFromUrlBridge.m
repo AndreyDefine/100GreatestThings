@@ -265,7 +265,7 @@ static NSString* momdDataBaseName=@"MainDataBase";
         if ([commonuserDefaults respondsToSelector:NSSelectorFromString(defaultsName)]){
             //необходимо установить свойство
             [commonuserDefaults setValue:value forKey:defaultsName];
-            NSLog(@"%@",defaultsName);
+            //NSLog(@"%@",defaultsName);
         }
         
     }

@@ -26,6 +26,7 @@
 @synthesize viewShadow;
 @synthesize roundRectView;
 @synthesize lockView;
+@synthesize lockViewLvl;
 @synthesize imageView1;
 @synthesize imageLock;
 @synthesize labelLock;
@@ -216,12 +217,13 @@
     int cost=[things_list.energy_for_unlock intValue];
     ((ListButton*)self.buttonView1).parentCell=self;
     customCellType=value;
-    float lockalpha=0.85;
+    float lockalpha=0.80;
     [self.buttonView1 removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
     switch (customCellType) {
         case CustomCellOpened:
             [self.buttonView1 addTarget:self action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
             self.lockView.backgroundColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha:0];
+            self.lockViewLvl.backgroundColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha:0];
             imageLock.image=nil;
             labelLockLevel.text=@"";
             labelLock.text=@"";
@@ -230,7 +232,8 @@
             break;
         case CustomCellFacebook:
             [self.buttonView1 addTarget:self action:@selector(buttonTouchFacebook:) forControlEvents:UIControlEventTouchUpInside];
-            self.lockView.backgroundColor = [UIColor colorWithRed: (float)80/255.0f green: (float)94/255.0f blue: (float)138/255.0f alpha:lockalpha];
+            self.lockView.backgroundColor = [UIColor colorWithRed: (float)87/255.0f green: (float)113/255.0f blue: (float)169/255.0f alpha:lockalpha];
+            self.lockViewLvl.backgroundColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha:0];
             imageLock.image=[UIImage imageNamed:@"lock_facebook.png"];
             labelLockLevel.text=@"";
             labelLock.text=@"Login with facebook to unlock this list";
@@ -240,7 +243,8 @@
             
         case CustomCellTwitter:
             [self.buttonView1 addTarget:self action:@selector(buttonTouchTwitter:) forControlEvents:UIControlEventTouchUpInside];
-            self.lockView.backgroundColor = [UIColor colorWithRed: (float)95/255.0f green: (float)169/255.0f blue: (float)221/255.0f alpha:lockalpha];
+            self.lockView.backgroundColor = [UIColor colorWithRed: (float)119/255.0f green: (float)182/255.0f blue: (float)227/255.0f alpha:lockalpha];
+            self.lockViewLvl.backgroundColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha:0];
             imageLock.image=[UIImage imageNamed:@"lock_twitter.png"];
             labelLock.text=@"Login with twitter to unlock this list";
             labelEnergy.text=@"";
@@ -249,7 +253,8 @@
             
         case CustomCellEnergy:
             [self.buttonView1 addTarget:self action:@selector(buttonTouchEnergy:) forControlEvents:UIControlEventTouchUpInside];
-            self.lockView.backgroundColor = [UIColor colorWithRed: (float)43/255.0f green: (float)146/255.0f blue: (float)223/255.0f alpha:lockalpha];
+            self.lockView.backgroundColor = [UIColor colorWithRed: (float)80/255.0f green: (float)183/255.0f blue: (float)255/255.0f alpha:lockalpha];
+            self.lockViewLvl.backgroundColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha:0];
             imageLock.image=[UIImage imageNamed:@"lock_energy.png"];
             labelLockLevel.text=@"";
             labelLock.text=@"Unlock now";
@@ -259,13 +264,14 @@
         
         case CustomCellLevel:
             [self.buttonView1 addTarget:self action:@selector(buttonTouchLevel:) forControlEvents:UIControlEventTouchUpInside];
-            self.lockView.backgroundColor = [UIColor colorWithRed: (float)90/255.0f green: (float)87/255.0f blue: (float)58/255.0f alpha:lockalpha];
-            imageLock.image=nil;
+            self.lockView.backgroundColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha:0];
+            self.lockViewLvl.backgroundColor = [UIColor colorWithRed: (float)96/255.0f green: (float)96/255.0f blue: (float)96/255.0f alpha:lockalpha];
+            imageLock.image=[UIImage imageNamed:@"lock_energy.png"];
+            labelEnergy.text=[NSString stringWithFormat:@"%d",cost];
+            labelNrg.text=@"NRG";
             
             labelLockLevel.text=[NSString stringWithFormat:@"%@ lvl",things_list.level];
             labelLock.text=@"required";
-            labelEnergy.text=@"";
-            labelNrg.text=@"";
             break;
 
         default:

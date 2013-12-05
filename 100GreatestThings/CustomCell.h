@@ -39,6 +39,7 @@ typedef NSUInteger CustomCellType;
 
 @property (nonatomic, strong) IBOutlet UIView *roundRectView;
 @property (nonatomic, strong) IBOutlet UIView *lockView;
+@property (nonatomic, strong) IBOutlet UIView *lockViewLvl;
 @property (nonatomic, weak) UITableViewController* tableViewController;
 
 

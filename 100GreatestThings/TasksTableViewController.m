@@ -7,7 +7,7 @@
 //
 
 #import "TasksTableViewController.h"
-#import "DatabaseFromUrl.h"
+#import "DatabaseFromUrlBridge.h"
 #import "Things_task.h"
 #import "Things_list.h"
 #import "TaskCell.h"
@@ -37,7 +37,7 @@
 
 -(void)connectToDataBase
 {
-    self.managedObjectContext = [DatabaseFromUrl getSharedInstance].managedObjectContext;
+    self.managedObjectContext = [DatabaseFromUrlBridge getSharedInstance].managedObjectContext;
     
     /*NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
@@ -94,8 +94,12 @@
     cell.tableViewController=self;
     
     NSArray *myArray = [things_list.to_Things_task allObjects];
+    //массив с сортировкой
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray = [myArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    things_task=[myArray objectAtIndex:indexPath.row];
+    things_task=[sortedArray objectAtIndex:indexPath.row];
     
     cell.things_task=things_task;
     cell.rowNumber.text=[[NSNumber numberWithInteger:indexPath.row+1] stringValue];

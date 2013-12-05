@@ -16,7 +16,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="image_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="network_link_required" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="network_link_required" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="opened" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="task_complete_message" optional="YES" attributeType="String" syncable="YES"/>
@@ -36,8 +36,8 @@
         <relationship name="to_Things_list" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Things_list" inverseName="to_Things_task" inverseEntity="Things_list" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Things_list" positionX="324" positionY="-129" width="128" height="300"/>
-        <element name="Things_task" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="Things_level" positionX="-270" positionY="-144" width="128" height="88"/>
+        <element name="Things_level" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Things_list" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Things_task" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

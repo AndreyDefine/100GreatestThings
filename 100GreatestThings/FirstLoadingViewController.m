@@ -6,13 +6,15 @@
 //  Copyright (c) 2013 MyCompanyName. All rights reserved.
 //
 
-#import "FirstLoadingViewViewController.h"
+#import "FirstLoadingViewController.h"
 
-@interface FirstLoadingViewViewController ()
+@interface FirstLoadingViewController ()
 
 @end
 
-@implementation FirstLoadingViewViewController
+@implementation FirstLoadingViewController
+
+@synthesize messageLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

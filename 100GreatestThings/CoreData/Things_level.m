@@ -2,7 +2,7 @@
 //  Things_level.m
 //  100GreatestThings
 //
-//  Created by baskakov on 04/12/13.
+//  Created by baskakov on 05/12/13.
 //  Copyright (c) 2013 MyCompanyName. All rights reserved.
 //
 
@@ -11,8 +11,8 @@
 
 @implementation Things_level
 
-@dynamic level;
 @dynamic exp;
+@dynamic level;
 @dynamic max_energy;
 
 @end

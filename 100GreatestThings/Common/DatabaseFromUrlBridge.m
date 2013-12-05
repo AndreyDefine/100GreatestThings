@@ -1,11 +1,11 @@
 //
-//  DatabaseFromUrl.m
+//  DatabaseFromUrlBridge.m
 //  100GreatestThings
 //
 //  Created by baskakov on 27/11/13.
 //  Copyright (c) 2013 MyCompanyName. All rights reserved.
 //
-#import "DatabaseFromUrl.h"
+#import "DatabaseFromUrlBridge.h"
 #import "Things_list.h"
 #import "Things_level.h"
 #import "NSString+Hash.h"
@@ -14,15 +14,18 @@
 #import "CommonUserDefaults.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface DatabaseFromUrl()
--(DatabaseFromUrl*)init;
+@interface DatabaseFromUrlBridge()
+-(DatabaseFromUrlBridge*)init;
 - (void) LoadDataFromJSONList:(id)response;
 - (void) LoadDataFromJSONSettings:(id)response;
 - (void) LoadDataFromJSONLevels:(id)response;
 - (void) LoadDataFromJSONTask:(id)response  curlist:(Things_list*)things_list;
+- (void)safeSetValuesForKeysWithDictionaryManagedObject:(NSDictionary *)keyedValues object:(id)inobject;
+
+- (NSManagedObject*) findCreateEntityForName:(NSString*)entityname withPredicate:(NSPredicate*)predicate withSortFieldName:(NSString*)sortfieldname create:(BOOL)needcreation;
 @end
 
-@implementation DatabaseFromUrl
+@implementation DatabaseFromUrlBridge
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -30,23 +33,23 @@
 
 //singleton не защищённый
 
-static DatabaseFromUrl *sDatabaseFromUrl = nil;
+static DatabaseFromUrlBridge *sDatabaseFromUrlBridge = nil;
 static NSString* dataBaseName=@"MainDataBase.sqlite";
 static NSString* momdDataBaseName=@"MainDataBase";
 
-+ (DatabaseFromUrl *) getSharedInstance
++ (DatabaseFromUrlBridge *) getSharedInstance
 {
     @synchronized(self)
     {
-        if (sDatabaseFromUrl == nil)
+        if (sDatabaseFromUrlBridge == nil)
         {
-            sDatabaseFromUrl = [[DatabaseFromUrl alloc] init];
+            sDatabaseFromUrlBridge = [[DatabaseFromUrlBridge alloc] init];
         }
     }
-    return sDatabaseFromUrl;
+    return sDatabaseFromUrlBridge;
 }
 
--(DatabaseFromUrl*)init;
+-(DatabaseFromUrlBridge*)init;
 {
     self=[super init];
     if(self)
@@ -56,30 +59,47 @@ static NSString* momdDataBaseName=@"MainDataBase";
     return self;
 }
 
+- (NSManagedObject*) findCreateEntityForName:(NSString*)entityname withPredicate:(NSPredicate*)predicate withSortFieldName:(NSString*)sortfieldname create:(BOOL)needcreation
+{
+    NSManagedObject* managedobject;
+    
+    //проверить содержится ли объект в базе
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityname inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    [request setPredicate:predicate];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortfieldname ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:sortDescriptors];
+    NSError *error = nil;
+    NSArray *result = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    //объект есть в базе
+    if(result.count>0)
+    {
+        managedobject=result[0];
+    }
+    else
+    {
+        if(needcreation)
+        {
+        
+            managedobject = [NSEntityDescription insertNewObjectForEntityForName:entityname inManagedObjectContext:self.managedObjectContext];
+        }
+    }
+    return managedobject;
+}
+
 -(int)getExpaForLevel:(int)level
 {
-    NSManagedObjectContext *context = [self managedObjectContext];
     Things_level *things_level;
     int exp=0;
     
     //проверить содержится ли объект в базе
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Things_level" inManagedObjectContext:context];
-    [request setEntity:entity];
     NSPredicate *predicate = [NSPredicate predicateWithFormat: @"level == %d", level];
-    [request setPredicate:predicate];
-        
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"level" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    [request setSortDescriptors:sortDescriptors];
-    NSError *error = nil;
-    NSArray *result = [context executeFetchRequest:request error:&error];
-        
-    //объект есть в базе
-    if(result.count>0)
-    {
-        things_level=result[0];
-    }
+    things_level=(Things_level*)[self findCreateEntityForName:@"Things_level" withPredicate:predicate withSortFieldName:@"level" create:NO];
+    
     if(things_level){
         exp=[things_level.exp intValue];
     }
@@ -88,28 +108,12 @@ static NSString* momdDataBaseName=@"MainDataBase";
 
 -(int)getEnergyForLevel:(int)level
 {
-    NSManagedObjectContext *context = [self managedObjectContext];
     Things_level *things_level;
     int exp=0;
-    
     //проверить содержится ли объект в базе
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Things_level" inManagedObjectContext:context];
-    [request setEntity:entity];
     NSPredicate *predicate = [NSPredicate predicateWithFormat: @"level == %d", level];
-    [request setPredicate:predicate];
+    things_level=(Things_level*)[self findCreateEntityForName:@"Things_level" withPredicate:predicate withSortFieldName:@"level" create:NO];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"level" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    [request setSortDescriptors:sortDescriptors];
-    NSError *error = nil;
-    NSArray *result = [context executeFetchRequest:request error:&error];
-    
-    //объект есть в базе
-    if(result.count>0)
-    {
-        things_level=result[0];
-    }
     if(things_level){
         exp=[things_level.max_energy intValue];
     }
@@ -117,17 +121,17 @@ static NSString* momdDataBaseName=@"MainDataBase";
 }
 
 #pragma mark - load settings from url
-- (void) GetSettings:(void (^)(void))responseBlock
+- (void) GetSettings:(void (^)(NSError*))responseBlock
 {
     //необходимо грузить всё с сервера
     EmbriaRequest* embriaRequest=[[EmbriaRequest alloc] init];
     embriaRequest.makeAsync=true;
     
-    embriaRequest.responseblock=^(EmbriaRequest* request,id response) {
+    embriaRequest.responseblock=^(EmbriaRequest* request,id response,NSError* error) {
         [self LoadDataFromJSONSettings:response];
         if(responseBlock)
         {
-            responseBlock();
+            responseBlock(error);
         }
     };
     embriaRequest.useURLConnection=true;
@@ -135,17 +139,17 @@ static NSString* momdDataBaseName=@"MainDataBase";
 }
 
 #pragma mark - load levels from url
-- (void) GetLevels:(void (^)(void))responseBlock
+- (void) GetLevels:(void (^)(NSError*))responseBlock
 {
     //необходимо грузить всё с сервера
     EmbriaRequest* embriaRequest=[[EmbriaRequest alloc] init];
     embriaRequest.makeAsync=true;
     
-    embriaRequest.responseblock=^(EmbriaRequest* request,id response) {
+    embriaRequest.responseblock=^(EmbriaRequest* request,id response,NSError* error) {
         [self LoadDataFromJSONLevels:response];
         if(responseBlock)
         {
-            responseBlock();
+            responseBlock(error);
         }
     };
     embriaRequest.useURLConnection=true;
@@ -153,17 +157,17 @@ static NSString* momdDataBaseName=@"MainDataBase";
 }
 
 #pragma mark - LoadSaveData from url
-- (void) LoadDataFromURL:(void (^)(void))responseBlock
+- (void) LoadDataFromURL:(void (^)(NSError*))responseBlock
 {
     //необходимо грузить всё с сервера
     EmbriaRequest* embriaRequest=[[EmbriaRequest alloc] init];
     embriaRequest.makeAsync=true;
     
-    embriaRequest.responseblock=^(EmbriaRequest* request,id response) {
+    embriaRequest.responseblock=^(EmbriaRequest* request,id response,NSError* error) {
         [self LoadDataFromJSONList:response];
         if(responseBlock)
         {
-            responseBlock();
+            responseBlock(error);
         }
     };
     embriaRequest.useURLConnection=true;
@@ -219,44 +223,20 @@ static NSString* momdDataBaseName=@"MainDataBase";
         return;
     //NSLog(@"%@",response);
     NSArray *jsonArray=(NSArray *)response;
-    NSManagedObjectContext *context = [self managedObjectContext];
     
     Things_task *things_task;
     
     for(int i=0;i<jsonArray.count;i++)
     {
-        //проверить содержится ли объект в базе
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Things_task" inManagedObjectContext:context];
-        [request setEntity:entity];
         NSPredicate *predicate = [NSPredicate predicateWithFormat: @"id == %@", [jsonArray[i] objectForKey:@"id"]];
-        [request setPredicate:predicate];
-        
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-        [request setSortDescriptors:sortDescriptors];
-        NSError *error = nil;
-        NSArray *result = [context executeFetchRequest:request error:&error];
-        
-        //объект есть в базе
-        if(result.count>0)
-        {
-            things_task=result[0];
-        }
-        else
-        {
-
-            things_task = [NSEntityDescription
-                       insertNewObjectForEntityForName:@"Things_task"
-                       inManagedObjectContext:context];
-        }
+        things_task=(Things_task*)[self findCreateEntityForName:@"Things_task" withPredicate:predicate withSortFieldName:@"id" create:YES];
         
         NSMutableSet* set=[[NSMutableSet alloc]initWithSet:things_list.to_Things_task];
         [set addObject:things_task];
         
         things_list.to_Things_task=set;
         
-        [self safeSetValuesForKeysWithDictionary:jsonArray[i] object:things_task];
+        [self safeSetValuesForKeysWithDictionaryManagedObject:jsonArray[i] object:things_task];
         
         //[self SaveImageToDisk:[jsonArray[i] objectForKey:@"image_url"]];
     }
@@ -267,10 +247,15 @@ static NSString* momdDataBaseName=@"MainDataBase";
 {
     if(!response)
         return;
-    NSArray *jsonArray=(NSArray *)response;
+    
+    [self safeSetValuesForKeysWithDictionaryUserDefaults:response];
+}
+
+- (void)safeSetValuesForKeysWithDictionaryUserDefaults:(NSDictionary *)keyedValues
+{
+    NSArray *jsonArray=(NSArray *)keyedValues;
     NSString *defaultsName;
     id value;
-    
     CommonUserDefaults* commonuserDefaults=[CommonUserDefaults getSharedInstance];
     
     for (int i=0;i<jsonArray.count;i++)
@@ -282,9 +267,8 @@ static NSString* momdDataBaseName=@"MainDataBase";
             [commonuserDefaults setValue:value forKey:defaultsName];
             NSLog(@"%@",defaultsName);
         }
-
+        
     }
-    
     [commonuserDefaults saveDefaults];
 }
 
@@ -295,38 +279,16 @@ static NSString* momdDataBaseName=@"MainDataBase";
     //NSLog(@"%@",response);
     NSArray *jsonArray=(NSArray *)response;
     NSManagedObjectContext *context = [self managedObjectContext];
-    
+    NSError *error = nil;
     Things_level *things_level;
     
     for(int i=0;i<jsonArray.count;i++)
     {
         //проверить содержится ли объект в базе
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Things_level" inManagedObjectContext:context];
-        [request setEntity:entity];
         NSPredicate *predicate = [NSPredicate predicateWithFormat: @"level == %@", [jsonArray[i] objectForKey:@"level"]];
-        [request setPredicate:predicate];
-        
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"level" ascending:YES];
-        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-        [request setSortDescriptors:sortDescriptors];
-        NSError *error = nil;
-        NSArray *result = [context executeFetchRequest:request error:&error];
-        
-        //объект есть в базе
-        if(result.count>0)
-        {
-            things_level=result[0];
-        }
-        else
-        {
-            
-            things_level = [NSEntityDescription
-                           insertNewObjectForEntityForName:@"Things_level"
-                           inManagedObjectContext:context];
-        }
-        
-        [self safeSetValuesForKeysWithDictionary:jsonArray[i] object:things_level];
+        things_level=(Things_level*)[self findCreateEntityForName:@"Things_level" withPredicate:predicate withSortFieldName:@"level" create:YES];
+
+        [self safeSetValuesForKeysWithDictionaryManagedObject:jsonArray[i] object:things_level];
         
         error = nil;
         if (![context save:&error]) {
@@ -353,22 +315,18 @@ static NSString* momdDataBaseName=@"MainDataBase";
     EmbriaRequest* embriaRequest;
     for(int i=0;i<jsonArray.count;i++)
     {
-        things_list = [NSEntityDescription
-                       insertNewObjectForEntityForName:@"Things_list"
-                       inManagedObjectContext:context];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"id == %@", [jsonArray[i] objectForKey:@"id"]];
+        things_list=(Things_list*)[self findCreateEntityForName:@"Things_list" withPredicate:predicate withSortFieldName:@"id" create:YES];
         
-        
-        [self safeSetValuesForKeysWithDictionary:jsonArray[i] object:things_list];
+        [self safeSetValuesForKeysWithDictionaryManagedObject:jsonArray[i] object:things_list];
         
         //необходимо выкачать все таски
-        NSLog(@"%@",[jsonArray[i] objectForKey:@"tasks_url"]);
-        
         id value = [jsonArray[i] objectForKey:@"tasks_url"];
         if (value&&value != [NSNull null]){
             embriaRequest=[[EmbriaRequest alloc] init];
             embriaRequest.makeAsync=false;
             
-            embriaRequest.responseblock=^(EmbriaRequest* request,id response) {
+            embriaRequest.responseblock=^(EmbriaRequest* request,id response,NSError* error) {
                 [self LoadDataFromJSONTask:response curlist:things_list];
             };
             embriaRequest.useURLConnection=true;
@@ -385,11 +343,11 @@ static NSString* momdDataBaseName=@"MainDataBase";
     }
     else
     {
-        NSLog(@"All saved to database.");
+        //NSLog(@"All saved to database.");
     }
 }
 
-- (void)safeSetValuesForKeysWithDictionary:(NSDictionary *)keyedValues object:(id)inobject
+- (void)safeSetValuesForKeysWithDictionaryManagedObject:(NSDictionary *)keyedValues object:(id)inobject
 {
     NSDictionary * attributes=[[inobject entity] attributesByName];
     NSString *nameInKeyedValues;

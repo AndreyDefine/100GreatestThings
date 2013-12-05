@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EmbriaRequest.h"
 #import "CommonUserDefaults.h"
-#import "FirstLoadingViewViewController.h"
+#import "FirstLoadingViewController.h"
 
 @interface MyNavigationControllerViewController : UINavigationController <UINavigationBarDelegate,UINavigationControllerDelegate,NSURLConnectionDelegate>
 {    

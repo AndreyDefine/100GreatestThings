@@ -22,12 +22,13 @@
 - (void)makeRequest:(NSString*)inHttp
 {
     //установлен ли делегат? если нет, то и запрос выполнять нет смысла
-    if ((self.delegate&&[self.delegate respondsToSelector:@selector(EmbriaRequest:response:)])||responseblock)
+    if ((self.delegate&&[self.delegate respondsToSelector:@selector(EmbriaRequest:response: error:)])||responseblock)
     {
         NSURL *url=[NSURL URLWithString: inHttp];
     
         if(useURLConnection)
         {
+            //настраиваемый запрос
             [self downloadJSONNSURLConnection:url];
         }
         else
@@ -38,7 +39,7 @@
     }
     else
     {
-        NSLog(@"EmbriaRequest: No delegate!!!");
+        NSLog(@"EmbriaRequest: No delegate or Block!!!");
         return;
     }
     
@@ -62,23 +63,29 @@
 
 -(void)makeResponse:(NSData*)indata
 {
-    NSError* error;
-    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:indata //1
-                                                         options:kNilOptions
-                                                           error:&error];
+    NSDictionary* json = nil;
+    if(requestError)
+    {
+        //NSLog(@"%@",requestError.localizedDescription);
+    }
+    if(indata)
+    {
+        NSError* error;
+        json = [NSJSONSerialization JSONObjectWithData:indata  options:kNilOptions error:&error];
+    }
     if(delegate)
     {
-        [self.delegate EmbriaRequest:self response:json];
+        [self.delegate EmbriaRequest:self response:json error:requestError];
     }
     
     if(responseblock)
     {
-        responseblock(self,json);
+        responseblock(self,json,requestError);
     }
 }
 
 -(void)downloadJSONNSURLConnection:(NSURL *)url {
-    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     if(makeAsync)
     {
         NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -101,6 +108,13 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [urlData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    urlData=nil;
+    requestError=error;
+    [self makeResponse:urlData];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {

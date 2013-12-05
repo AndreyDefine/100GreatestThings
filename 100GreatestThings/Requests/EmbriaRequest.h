@@ -18,7 +18,7 @@
  @param request запрос к которому относится вызов метода делегата
  @param response ответ сервера в виде Foundation объекта
  */
-- (void)EmbriaRequest:(EmbriaRequest *)request response:(id)response;
+- (void)EmbriaRequest:(EmbriaRequest *)request response:(id)response error:(NSError*)requestError;
 
 @end
 
@@ -29,9 +29,10 @@
  настройка, придётся всё переписать и воспользоваться NSURLConnection
  */
 
-typedef void (^ResponseEmbriaBlock)(EmbriaRequest*, id);
+typedef void (^ResponseEmbriaBlock)(EmbriaRequest*, id, NSError*);
 @interface EmbriaRequest : NSObject
 {
+    NSError *requestError;
     NSMutableData*urlData;
 }
 //делегат, в который возвращается ответ от сервера

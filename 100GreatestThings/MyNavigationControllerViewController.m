@@ -9,8 +9,9 @@
 #import "MyNavigationControllerViewController.h"
 #import "AppDelegate.h"
 #import "TWTSideMenuViewController.h"
-#import "FirstLoadingViewViewController.h"
-#import "DatabaseFromUrl.h"
+#import "FirstLoadingViewController.h"
+#import "DatabaseFromUrlBridge.h"
+#import "FirstLoadingViewController.h"
 
 @interface MyNavigationControllerViewController ()
 
@@ -66,21 +67,33 @@
     buttonBack.hidden=true;
     
     //проверим первая ли это загрузка
-    if([CommonUserDefaults getSharedInstance].flagNotFirstLaunch==NO)
+    //if([CommonUserDefaults getSharedInstance].flagNotFirstLaunch==NO)
     {
         NSLog(@"first launch!!!");
         
         [CommonUserDefaults getSharedInstance].lastlaunchdate=[NSDate date];
         
-        FirstLoadingViewViewController *myViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstLoadingView"];
+        FirstLoadingViewController *myViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstLoadingView"];
         [self pushViewController:myViewController animated:YES];
         
-        [[DatabaseFromUrl getSharedInstance] GetSettings:nil];
-        [[DatabaseFromUrl getSharedInstance] GetLevels:nil];
+        [[DatabaseFromUrlBridge getSharedInstance] GetSettings:nil];
+        [[DatabaseFromUrlBridge getSharedInstance] GetLevels:nil];
         
-        [[DatabaseFromUrl getSharedInstance] LoadDataFromURL:^(void){
-            [CommonUserDefaults getSharedInstance].flagNotFirstLaunch=YES;
-            [self performSelectorOnMainThread:@selector(ShowMainView:) withObject:nil waitUntilDone:NO];
+        [[DatabaseFromUrlBridge getSharedInstance] LoadDataFromURL:^(NSError*error){
+            if(error)
+            {
+                //первый запуск
+                if([CommonUserDefaults getSharedInstance].flagNotFirstLaunch==NO)
+                {
+                    FirstLoadingViewController* viewControllerLoading=(FirstLoadingViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-1];
+                    viewControllerLoading.messageLabel.text=error.localizedDescription;
+                    [viewControllerLoading.messageLabel sizeToFit];
+                }
+            }
+            else
+            {
+                [self performSelectorOnMainThread:@selector(ShowMainView:) withObject:nil waitUntilDone:NO];
+            }
         }];
     }
 }
@@ -88,6 +101,7 @@
 
 -(void)ShowMainView:(id)inobject
 {
+    [CommonUserDefaults getSharedInstance].flagNotFirstLaunch=YES;
     [self popViewControllerAnimated:YES];
 }
 
@@ -126,7 +140,7 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if(viewController==[self.viewControllers objectAtIndex:0]||[viewController isKindOfClass:[FirstLoadingViewViewController class]])
+    if(viewController==[self.viewControllers objectAtIndex:0]||[viewController isKindOfClass:[FirstLoadingViewController class]])
     {
         buttonBack.hidden=true;
         buttonMenu.hidden=false;

@@ -7,7 +7,7 @@
 //
 
 #import "CommonUserDefaults.h"
-#import "DatabaseFromUrl.h"
+#import "DatabaseFromUrlBridge.h"
 @interface CommonUserDefaults()
 -(CommonUserDefaults*)init;
 @end
@@ -84,13 +84,13 @@ static CommonUserDefaults *sCommonUserDefaults = nil;
 - (void)setExpa: (int)newValue {
     expa=newValue;
     //проверим может левел ап проверим сколько нужно для следующего уровня
-    int neededexpa=[[DatabaseFromUrl getSharedInstance] getExpaForLevel:level+1];
+    int neededexpa=[[DatabaseFromUrlBridge getSharedInstance] getExpaForLevel:level+1];
     while(neededexpa>0&&expa>=neededexpa)
     {
         //level up
         self.level++;
-        self.maxenergy=[[DatabaseFromUrl getSharedInstance] getEnergyForLevel:level];
-        neededexpa=[[DatabaseFromUrl getSharedInstance] getExpaForLevel:level+1];
+        self.maxenergy=[[DatabaseFromUrlBridge getSharedInstance] getEnergyForLevel:level];
+        neededexpa=[[DatabaseFromUrlBridge getSharedInstance] getExpaForLevel:level+1];
     }
     [prefs setInteger:newValue forKey:@"expa"];
 }

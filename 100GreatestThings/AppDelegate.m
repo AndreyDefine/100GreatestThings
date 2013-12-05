@@ -11,7 +11,7 @@
 #import "TWTMenuViewController.h"
 #import "Things_list.h"
 #import "LoadSaveImageFromUrl.h"
-#import "DatabaseFromUrl.h"
+#import "DatabaseFromUrlBridge.h"
 #import "MKStoreManager.h"
 #import "CommonUserDefaults.h"
 
@@ -87,7 +87,7 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    [[DatabaseFromUrl getSharedInstance] saveContext];
+    [[DatabaseFromUrlBridge getSharedInstance] saveContext];
     [[CommonUserDefaults getSharedInstance] saveDefaults];
 }
 

@@ -8,7 +8,7 @@
 
 #import "TaskCell.h"
 #import "Things_task.h"
-#import "DatabaseFromUrl.h"
+#import "DatabaseFromUrlBridge.h"
 
 @implementation TaskCell
 @synthesize rowNumber;
@@ -29,7 +29,7 @@
     self.titleView1.text=things_task.title;
     self.doneButton.selected=[things_task.complete boolValue];    
     //image
-    [[DatabaseFromUrl getSharedInstance] LoadImage:things_task.image_url todisk:things_task.disk_image_url toimageview:self.imageView1];
+    [[DatabaseFromUrlBridge getSharedInstance] LoadImage:things_task.image_url todisk:things_task.disk_image_url toimageview:self.imageView1];
     self.imageView1.layer.cornerRadius = 4.0;
     self.imageView1.layer.masksToBounds = YES;
     for(UIImageView *imageView in self.friendsCollection)
@@ -61,6 +61,24 @@
 
 -(void)testRequestAlex
 {
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    
+    NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
+    [cookieProperties setObject:@"_userTokenCookieName" forKey:NSHTTPCookieName];
+    [cookieProperties setObject:@"BAhbB1sGaQZJIiIkMmEkMTAkUlhiT0VmejZ3SFhMN2QuMmtZazZQdQY6BkVU" forKey:NSHTTPCookieValue];
+    [cookieProperties setObject:@"http://dev.petrosoft.su:60001" forKey:NSHTTPCookieDomain];
+    [cookieProperties setObject:@"http://dev.petrosoft.su:60001" forKey:NSHTTPCookieOriginURL];
+    [cookieProperties setObject:@"/issues/create" forKey:NSHTTPCookiePath];
+    [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
+    
+    // set expiration to one month from now or any NSDate of your choosing
+    // this makes the cookie sessionless and it will persist across web sessions and app launches
+    /// if you want the cookie to be destroyed when your app exits, don't set this
+    [cookieProperties setObject:[[NSDate date] dateByAddingTimeInterval:2629743] forKey:NSHTTPCookieExpires];
+    
+    NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+    
     NSURL *url=[NSURL URLWithString: @"http://dev.petrosoft.su:60001/issues/create"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     
@@ -92,7 +110,7 @@
     self.doneButton.selected=!self.doneButton.selected;
     self.things_task.complete=[NSNumber numberWithBool:self.doneButton.selected];
     [self updateTable];
-    [self testRequestAlex];
+    //[self testRequestAlex];
 }
 
 -(void)updateTable

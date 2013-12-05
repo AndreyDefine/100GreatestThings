@@ -14,7 +14,7 @@
 #import "MyNavigationControllerViewController.h"
 #import "LoadSaveImageFromUrl.h"
 #import "ListButton.h"
-#import "DatabaseFromUrl.h"
+#import "DatabaseFromUrlBridge.h"
 #import "CommonUserDefaults.h"
 #import "Things_task.h"
 
@@ -44,7 +44,7 @@
 
 -(void)connectToDataBase
 {
-    self.managedObjectContext = [DatabaseFromUrl getSharedInstance].managedObjectContext;
+    self.managedObjectContext = [DatabaseFromUrlBridge getSharedInstance].managedObjectContext;
     
     NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {

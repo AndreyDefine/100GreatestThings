@@ -9,7 +9,7 @@
         <scene sceneID="t6S-5e-6Py">
             <objects>
                 <navigationController storyboardIdentifier="NavigationViewController" definesPresentationContext="YES" navigationBarHidden="YES" id="vV1-BE-6bP" customClass="MyNavigationControllerViewController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="G7M-iq-G4k" customClass="CustomBar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="G7M-iq-G4k">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -274,24 +274,27 @@
             </objects>
             <point key="canvasLocation" x="435" y="-1798"/>
         </scene>
-        <!--First Loading View View Controller-->
+        <!--First Loading View Controller-->
         <scene sceneID="qlS-24-Qyf">
             <objects>
-                <viewController storyboardIdentifier="FirstLoadingView" id="q8K-Ho-807" customClass="FirstLoadingViewViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstLoadingView" id="q8K-Ho-807" customClass="FirstLoadingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vru-T7-VQx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OOQ-8K-AVC">
-                                <rect key="frame" x="129" y="245" width="62" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OOQ-8K-AVC">
+                                <rect key="frame" x="70" y="111" width="181" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="OOQ-8K-AVC" id="KAK-3Y-Ac5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tee-fs-iZj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

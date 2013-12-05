@@ -2,7 +2,7 @@
 //  Things_level.h
 //  100GreatestThings
 //
-//  Created by baskakov on 04/12/13.
+//  Created by baskakov on 05/12/13.
 //  Copyright (c) 2013 MyCompanyName. All rights reserved.
 //
 
@@ -12,8 +12,8 @@
 
 @interface Things_level : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * level;
 @property (nonatomic, retain) NSNumber * exp;
+@property (nonatomic, retain) NSNumber * level;
 @property (nonatomic, retain) NSNumber * max_energy;
 
 @end

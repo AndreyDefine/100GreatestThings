@@ -2,7 +2,7 @@
 //  Things_task.h
 //  100GreatestThings
 //
-//  Created by baskakov on 04/12/13.
+//  Created by baskakov on 05/12/13.
 //  Copyright (c) 2013 MyCompanyName. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 
 @interface Things_task : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * complete;
 @property (nonatomic, retain) NSString * description_;
 @property (nonatomic, retain) NSString * disk_image_url;
 @property (nonatomic, retain) NSNumber * id;
@@ -20,7 +21,6 @@
 @property (nonatomic, retain) id links;
 @property (nonatomic, retain) NSString * subtitle;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSNumber * complete;
 @property (nonatomic, retain) NSSet *to_Things_list;
 @end
 

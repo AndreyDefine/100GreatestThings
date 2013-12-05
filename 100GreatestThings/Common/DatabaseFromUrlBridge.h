@@ -1,5 +1,5 @@
 //
-//  DatabaseFromUrl.h
+//  DatabaseFromUrlBridge.h
 //  100GreatestThings
 //
 //  Created by baskakov on 27/11/13.
@@ -11,7 +11,7 @@
 //сетью
 #import <Foundation/Foundation.h>
 
-@interface DatabaseFromUrl : NSObject
+@interface DatabaseFromUrlBridge : NSObject
 {
 }
 
@@ -20,12 +20,12 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 
-+ (DatabaseFromUrl *) getSharedInstance;
++ (DatabaseFromUrlBridge *) getSharedInstance;
 
-- (void) LoadDataFromURL:(void (^)(void))responseBlock;
+- (void) LoadDataFromURL:(void (^)(NSError*))responseBlock;
 
-- (void) GetSettings:(void (^)(void))responseBlock;
-- (void) GetLevels:(void (^)(void))responseBlock;
+- (void) GetSettings:(void (^)(NSError*))responseBlock;
+- (void) GetLevels:(void (^)(NSError*))responseBlock;
 
 - (NSURL *)applicationDocumentsDirectory;
 - (void)saveContext;

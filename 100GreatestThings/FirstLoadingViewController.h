@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstLoadingViewViewController : UIViewController
+@interface FirstLoadingViewController : UIViewController
+
+@property (strong, nonatomic)IBOutlet UILabel *messageLabel;
 
 @end

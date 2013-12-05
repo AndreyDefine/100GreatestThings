@@ -15,7 +15,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "CommonUserDefaults.h"
 #import "Things_task.h"
-#import "DatabaseFromUrl.h"
+#import "DatabaseFromUrlBridge.h"
 
 @implementation CustomCell
 
@@ -103,7 +103,7 @@
     viewShadow.frame=rect;
     
     //add image
-    [[DatabaseFromUrl getSharedInstance] LoadImage:things_list.image_url todisk:things_list.disk_image_url toimageview:self.imageView1];
+    [[DatabaseFromUrlBridge getSharedInstance] LoadImage:things_list.image_url todisk:things_list.disk_image_url toimageview:self.imageView1];
     
     self.imageView1.layer.cornerRadius = 4.0;
     self.imageView1.layer.masksToBounds = YES;
@@ -216,7 +216,7 @@
     int cost=[things_list.energy_for_unlock intValue];
     ((ListButton*)self.buttonView1).parentCell=self;
     customCellType=value;
-    float lockalpha=0.8;
+    float lockalpha=0.85;
     [self.buttonView1 removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
     switch (customCellType) {
         case CustomCellOpened:

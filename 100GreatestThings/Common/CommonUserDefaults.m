@@ -76,12 +76,12 @@ static CommonUserDefaults *sCommonUserDefaults = nil;
     [prefs setInteger:newValue forKey:@"level"];
 }
 
-- (int)expa {
-    expa = [prefs integerForKey:@"expa"];
+- (float)expa {
+    expa = [prefs floatForKey:@"expa"];
     return expa;
 }
 
-- (void)setExpa: (int)newValue {
+- (void)setExpa: (float)newValue {
     expa=newValue;
     //проверим может левел ап проверим сколько нужно для следующего уровня
     int neededexpa=[[DatabaseFromUrlBridge getSharedInstance] getExpaForLevel:level+1];
@@ -92,7 +92,7 @@ static CommonUserDefaults *sCommonUserDefaults = nil;
         self.maxenergy=[[DatabaseFromUrlBridge getSharedInstance] getEnergyForLevel:level];
         neededexpa=[[DatabaseFromUrlBridge getSharedInstance] getExpaForLevel:level+1];
     }
-    [prefs setInteger:newValue forKey:@"expa"];
+    [prefs setFloat:newValue forKey:@"expa"];
 }
 
 - (float)maxenergy {

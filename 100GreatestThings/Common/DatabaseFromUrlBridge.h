@@ -10,6 +10,7 @@
 //класс для работы c локальной базой данных и
 //сетью
 #import <Foundation/Foundation.h>
+#import "Things_task.h"
 
 @interface DatabaseFromUrlBridge : NSObject
 {
@@ -36,9 +37,6 @@
 
 //получить количество экспы нужной для уровня
 -(int)getExpaForLevel:(int)level;
-
-
-//получить количество максимальной энергии на уровня
+//получить энергию для уровня
 -(int)getEnergyForLevel:(int)level;
-
 @end

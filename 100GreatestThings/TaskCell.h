@@ -19,6 +19,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *imageView1;
 @property (nonatomic, retain) IBOutletCollection(UIImageView) NSArray *friendsCollection;
 @property (strong, nonatomic) Things_task *things_task;
+@property (strong, nonatomic) Things_list *things_list;
 @property (nonatomic, weak) UITableViewController* tableViewController;
 
 -(IBAction)makeTask:(id)sender;

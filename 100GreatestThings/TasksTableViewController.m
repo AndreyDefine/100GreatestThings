@@ -101,6 +101,7 @@
     
     things_task=[sortedArray objectAtIndex:indexPath.row];
     
+    cell.things_list=things_list;
     cell.things_task=things_task;
     cell.rowNumber.text=[[NSNumber numberWithInteger:indexPath.row+1] stringValue];
 }

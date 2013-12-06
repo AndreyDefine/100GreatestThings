@@ -88,7 +88,8 @@
     {
         for (int i=0;i<myArray.count;i++)
         {
-            if([((Things_task*)[myArray objectAtIndex:i]).complete boolValue]==YES)
+            //задача выполнена
+            if([((Things_task*)[myArray objectAtIndex:i]).complete integerValue]==2)
             {
                 progress++;
             }

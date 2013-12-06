@@ -25,7 +25,7 @@
         <relationship name="to_Things_task" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Things_task" inverseName="to_Things_list" inverseEntity="Things_task" syncable="YES"/>
     </entity>
     <entity name="Things_task" representedClassName="Things_task" syncable="YES">
-        <attribute name="complete" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="complete" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="description_" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="disk_image_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>

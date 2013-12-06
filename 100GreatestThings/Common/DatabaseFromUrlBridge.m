@@ -276,7 +276,6 @@ static NSString* momdDataBaseName=@"MainDataBase";
 {
     if(!response)
         return;
-    //NSLog(@"%@",response);
     NSArray *jsonArray=(NSArray *)response;
     NSManagedObjectContext *context = [self managedObjectContext];
     NSError *error = nil;
@@ -296,7 +295,7 @@ static NSString* momdDataBaseName=@"MainDataBase";
         }
         else
         {
-            NSLog(@"All saved to database.");
+            //NSLog(@"All saved to database.");
         }
 
     }

@@ -45,7 +45,8 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
+        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        //storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
     }
     
     self.navigationViewController=[storyboard instantiateViewControllerWithIdentifier:@"NavigationViewController"];

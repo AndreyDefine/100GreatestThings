@@ -59,58 +59,11 @@
     [super layoutSubviews];
 }
 
--(void)testRequestAlex
-{
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-    
-    NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
-    [cookieProperties setObject:@"_userTokenCookieName" forKey:NSHTTPCookieName];
-    [cookieProperties setObject:@"BAhbB1sGaQZJIiIkMmEkMTAkUlhiT0VmejZ3SFhMN2QuMmtZazZQdQY6BkVU" forKey:NSHTTPCookieValue];
-    [cookieProperties setObject:@"http://dev.petrosoft.su:60001" forKey:NSHTTPCookieDomain];
-    [cookieProperties setObject:@"http://dev.petrosoft.su:60001" forKey:NSHTTPCookieOriginURL];
-    [cookieProperties setObject:@"/issues/create" forKey:NSHTTPCookiePath];
-    [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
-    
-    // set expiration to one month from now or any NSDate of your choosing
-    // this makes the cookie sessionless and it will persist across web sessions and app launches
-    /// if you want the cookie to be destroyed when your app exits, don't set this
-    [cookieProperties setObject:[[NSDate date] dateByAddingTimeInterval:2629743] forKey:NSHTTPCookieExpires];
-    
-    NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-    
-    NSURL *url=[NSURL URLWithString: @"http://dev.petrosoft.su:60001/issues/create"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    NSURLResponse* response;
-    NSError* error = nil;
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"data%@",str);
-    
-    /*NSLog(@"%@",data st);
-    var request = new RestRequest ("issues/create", Method.POST);
-    request.AddCookie (_userTokenCookieName, Config.UserData.UserToken);
-    request.AddParameter ("issue[custom_address]", issue.CustomAddress);
-    if (issue.Latitude_cli != 0) {
-        request.AddParameter ("issue[latitude_cli]", issue.Latitude_cli.ToString (CultureInfo.InvariantCulture));
-        request.AddParameter ("issue[longitude_cli]", issue.Longitude_cli.ToString (CultureInfo.InvariantCulture));
-    }
-    request.AddParameter ("issue[rating]", issue.Rating);
-    request.AddParameter ("issue[eventdate]", issue.EventDate.ToString ("dd.MM.yyyy"));
-    request.AddParameter ("issue[comment]", issue.Comment);
-    _userTokenCookieName = "remember_user_token";*/
-}
-
 -(IBAction)makeTask:(id)sender
 {
     self.doneButton.selected=!self.doneButton.selected;
     self.things_task.complete=[NSNumber numberWithBool:self.doneButton.selected];
     [self updateTable];
-    //[self testRequestAlex];
 }
 
 -(void)updateTable

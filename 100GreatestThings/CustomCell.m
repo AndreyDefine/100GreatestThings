@@ -66,13 +66,19 @@
         //need level for cell
         self.customCellType=CustomCellLevel;
     }
-    else if(!things_list.opened)
+    else if(things_list.opened)
     {
-        self.customCellType=CustomCellEnergy;
+        self.customCellType=CustomCellOpened;
+    }else if([things_list.network_link_required isEqualToString:@"facebook"])
+    {
+        self.customCellType=CustomCellFacebook;
+    }else if([things_list.network_link_required isEqualToString:@"twitter"])
+    {
+        self.customCellType=CustomCellTwitter;
     }
     else{
-        //normal cell
-        self.customCellType=CustomCellOpened;
+        //not facebook, twitter, level, opened
+        self.customCellType=CustomCellEnergy;
     }
     
     //set label progress

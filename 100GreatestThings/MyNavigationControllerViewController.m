@@ -12,6 +12,7 @@
 #import "FirstLoadingViewController.h"
 #import "DatabaseFromUrlBridge.h"
 #import "FirstLoadingViewController.h"
+#import "EnergyBarViewController.h"
 
 @interface MyNavigationControllerViewController ()
 
@@ -142,11 +143,13 @@
 {
     if(viewController==[self.viewControllers objectAtIndex:0]||[viewController isKindOfClass:[FirstLoadingViewController class]])
     {
+        [EnergyBarViewController getSharedInstance].view.hidden=false;
         buttonBack.hidden=true;
         buttonMenu.hidden=false;
     }
     else
     {
+        [EnergyBarViewController getSharedInstance].view.hidden=true;
         buttonBack.hidden=false;
         buttonMenu.hidden=true;
     }

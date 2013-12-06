@@ -223,6 +223,17 @@
     [self.tableView endUpdates];
 }
 
-
+/*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    // Return a fixed constant if possible, or do some minimal calculations if needed to be able to return an
+    // estimated row height that's at least within an order of magnitude of the actual height.
+    // For example:
+    float height=0;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        height=53;
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        height=65;
+    }
+    return height;
+}*/
 
 @end

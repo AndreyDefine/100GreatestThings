@@ -3,13 +3,14 @@
 //  100GreatestThings
 //
 //  Created by baskakov on 27/11/13.
-//  Copyright (c) 2013 MyCompanyName. All rights reserved.
+//  Copyright (c) 2013 Phereo.com. All rights reserved.
 //
 
 #import "LoadSaveImageFromUrl.h"
 #import "NSString+Hash.h"
 
 @interface LoadSaveImageFromUrl()
+//загрузить и сохранить картинку, для заданного адреса
 - (UIImage*) LoadAndSave:(NSString *)fileURL;
 @end
 

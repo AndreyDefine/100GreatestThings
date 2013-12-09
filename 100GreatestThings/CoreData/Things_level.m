@@ -3,7 +3,7 @@
 //  100GreatestThings
 //
 //  Created by baskakov on 05/12/13.
-//  Copyright (c) 2013 MyCompanyName. All rights reserved.
+//  Copyright (c) 2013 Phereo.com. All rights reserved.
 //
 
 #import "Things_level.h"

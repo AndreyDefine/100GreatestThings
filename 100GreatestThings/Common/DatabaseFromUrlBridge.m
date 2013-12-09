@@ -3,7 +3,7 @@
 //  100GreatestThings
 //
 //  Created by baskakov on 27/11/13.
-//  Copyright (c) 2013 MyCompanyName. All rights reserved.
+//  Copyright (c) 2013 Phereo.com. All rights reserved.
 //
 #import "DatabaseFromUrlBridge.h"
 #import "Things_list.h"
@@ -15,13 +15,23 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface DatabaseFromUrlBridge()
+//получить адрес документов приложения
+- (NSURL *)applicationDocumentsDirectory;
+//init
 -(DatabaseFromUrlBridge*)init;
+//callback загрузки данных из интернета списки
 - (void) LoadDataFromJSONList:(id)response;
+//callback загрузки данных из интернета настройки
 - (void) LoadDataFromJSONSettings:(id)response;
+//callback загрузки данных из интернета уровни
 - (void) LoadDataFromJSONLevels:(id)response;
+//callback загрузки данных из интернета задачи
 - (void) LoadDataFromJSONTask:(id)response  curlist:(Things_list*)things_list;
+//JSON to ManagedObject
 - (void)safeSetValuesForKeysWithDictionaryManagedObject:(NSDictionary *)keyedValues object:(id)inobject;
-
+//JSON to NSUserDefaults
+- (void)safeSetValuesForKeysWithDictionaryUserDefaults:(NSDictionary *)keyedValues;
+//найти или создать запись в таблице, по заданным параметрам
 - (NSManagedObject*) findCreateEntityForName:(NSString*)entityname withPredicate:(NSPredicate*)predicate withSortFieldName:(NSString*)sortfieldname create:(BOOL)needcreation;
 @end
 

@@ -3,13 +3,12 @@
 //  CustomCellTutorial
 //
 //  Created by Nick on 7/26/12.
-//  Copyright (c) 2012 MyCompanyName. All rights reserved.
+//  Copyright (c) 2012 Phereo.com. All rights reserved.
 //
 
 #import "CustomCell.h"
 #import "TasksTableViewController.h"
 #import "MyNavigationControllerViewController.h"
-#import "ListButton.h"
 #import "EnergyBarViewController.h"
 #import "CustomProgressBar.h"
 #import <FacebookSDK/FacebookSDK.h>
@@ -222,7 +221,6 @@
 -(void)setCustomCellType:(CustomCellType)value
 {
     int cost=[things_list.energy_for_unlock intValue];
-    ((ListButton*)self.buttonView1).parentCell=self;
     customCellType=value;
     float lockalpha=0.80;
     [self.buttonView1 removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];

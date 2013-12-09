@@ -3,7 +3,7 @@
 //  CustomCellTutorial
 //
 //  Created by Nick on 7/25/12.
-//  Copyright (c) 2012 MyCompanyName. All rights reserved.
+//  Copyright (c) 2012 Phereo.com. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

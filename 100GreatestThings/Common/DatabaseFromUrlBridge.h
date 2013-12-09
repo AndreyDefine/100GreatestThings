@@ -3,12 +3,12 @@
 //  100GreatestThings
 //
 //  Created by baskakov on 27/11/13.
-//  Copyright (c) 2013 MyCompanyName. All rights reserved.
+//  Copyright (c) 2013 Phereo.com. All rights reserved.
 //
 
-
-//класс для работы c локальной базой данных и
-//сетью
+/** Класс для работы c локальной базой данных и
+ сетью. Синглтон.
+ */
 #import <Foundation/Foundation.h>
 #import "Things_task.h"
 
@@ -16,23 +16,25 @@
 {
 }
 
+//Core Data common properties
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 
+//Получить экземпляр синглтона
 + (DatabaseFromUrlBridge *) getSharedInstance;
-
+//Загрузить основную таблицу списков из интернета, и сохранить её в бд
 - (void) LoadDataFromURL:(void (^)(NSError*))responseBlock;
-
+//Загрузить таблицу с настройками приложения, и сохранить её в NSUserDefaults
 - (void) GetSettings:(void (^)(NSError*))responseBlock;
+//Загрузить таблицу с описаниями уровней, и сохранить её в бд
 - (void) GetLevels:(void (^)(NSError*))responseBlock;
-
-- (NSURL *)applicationDocumentsDirectory;
+//Сохранить базу данных
 - (void)saveContext;
-
+//Сохранить картинку на диск
 - (UIImage*) SaveImageToDisk:(NSString*)value;
-
+//Загрузить с кешированием картинку из интернета, и по завершении поместить её в указанный imageview
 -(void)LoadImage:(NSString*)image_url todisk:(NSString*)disk_image_url toimageview:(UIImageView*)imageview;
 
 //получить количество экспы нужной для уровня

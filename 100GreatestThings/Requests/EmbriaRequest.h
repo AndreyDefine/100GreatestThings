@@ -37,8 +37,11 @@ typedef void (^ResponseEmbriaBlock)(EmbriaRequest*, id, NSError*);
 }
 //делегат, в который возвращается ответ от сервера
 @property (nonatomic, weak, readwrite) id <EmbriaRequestDelegate> delegate;
+//выполнять запрос асинхронно
 @property (nonatomic, readwrite) BOOL makeAsync;
+//испльзовать ли URLConnection или dataWithContentsOfURL
 @property (nonatomic, readwrite) BOOL useURLConnection;
+//response block
 @property (nonatomic, strong,readwrite) ResponseEmbriaBlock responseblock;
 
 /** Выполнить запрос по адресу.

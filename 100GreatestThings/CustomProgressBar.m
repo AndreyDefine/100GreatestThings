@@ -3,15 +3,17 @@
 //  100GreatestThings
 //
 //  Created by baskakov on 02/12/13.
-//  Copyright (c) 2013 MyCompanyName. All rights reserved.
+//  Copyright (c) 2013 Phereo.com. All rights reserved.
 //
 
 #import "CustomProgressBar.h"
 
 @interface CustomProgressBar ()
-
+//init
 -(id)init;
+//initWithFrame
 -(id)initWithFrame:(CGRect)frame;
+//отобразить прогресс для значения
 -(void)setEnergyPosition:(int)range;
 
 @end

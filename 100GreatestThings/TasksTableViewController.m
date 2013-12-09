@@ -3,7 +3,7 @@
 //  100GreatestThings
 //
 //  Created by baskakov on 29/11/13.
-//  Copyright (c) 2013 MyCompanyName. All rights reserved.
+//  Copyright (c) 2013 Phereo.com. All rights reserved.
 //
 
 #import "TasksTableViewController.h"
@@ -13,12 +13,11 @@
 #import "TaskCell.h"
 #import "CustomCell.h"
 #import "LoadSaveImageFromUrl.h"
-#import "ListButton.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface TasksTableViewController ()
+//соединиться с бд
 -(void)connectToDataBase;
-
 @end
 
 @implementation TasksTableViewController

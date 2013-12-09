@@ -3,7 +3,7 @@
 //  100GreatestThings
 //
 //  Created by baskakov on 29/11/13.
-//  Copyright (c) 2013 MyCompanyName. All rights reserved.
+//  Copyright (c) 2013 Phereo.com. All rights reserved.
 //
 
 #import "EnergyBarViewController.h"
@@ -11,8 +11,8 @@
 #import "CommonUserDefaults.h"
 
 @interface EnergyBarViewController ()
+//таймер, дополнения энергии
 -(void)timerFired:(id)sender;
-
 @end
 
 @implementation EnergyBarViewController

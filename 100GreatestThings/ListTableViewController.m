@@ -3,7 +3,7 @@
 //  100GreatestThings
 //
 //  Created by Nick on 7/25/12.
-//  Copyright (c) 2012 MyCompanyName. All rights reserved.
+//  Copyright (c) 2012 Phereo.com. All rights reserved.
 //
 
 #import "ListTableViewController.h"
@@ -13,7 +13,6 @@
 #import "Things_list.h"
 #import "MyNavigationControllerViewController.h"
 #import "LoadSaveImageFromUrl.h"
-#import "ListButton.h"
 #import "DatabaseFromUrlBridge.h"
 #import "CommonUserDefaults.h"
 #import "Things_task.h"
@@ -24,6 +23,7 @@
 
 @interface ListTableViewController ()
 
+//соединиться с бд
 -(void)connectToDataBase;
 
 @end

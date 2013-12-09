@@ -3,7 +3,7 @@
 //  CustomCellTutorial
 //
 //  Created by baskakov on 14/11/13.
-//  Copyright (c) 2013 MyCompanyName. All rights reserved.
+//  Copyright (c) 2013 Phereo.com. All rights reserved.
 //
 
 #import "MyNavigationControllerViewController.h"
@@ -24,7 +24,7 @@
 @synthesize buttonMenu;
 @synthesize buttonBack;
 @synthesize customBar;
-@synthesize expaCustomBar;
+@synthesize energyCustomBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,8 +46,8 @@
     self.customBar=customBarController.view;
     
     //set expaCustomBarViewController
-    UIViewController *expacustomBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"EnergyBarController"];
-    self.expaCustomBar=expacustomBarController.view;
+    UIViewController *energycustomBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"EnergyBarController"];
+    self.energyCustomBar=energycustomBarController.view;
     
     CGRect screenBounds = [UIScreen mainScreen].bounds ;
     CGFloat width = CGRectGetWidth(screenBounds);
@@ -61,7 +61,7 @@
     {
         [self setItemsPosition:height];
     }
-    [self.view addSubview:expaCustomBar];
+    [self.view addSubview:energyCustomBar];
     [self.view addSubview:customBar];
     [customBar addSubview:buttonMenu];
     [customBar addSubview:buttonBack];
@@ -111,10 +111,10 @@
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         self.customBar.frame = CGRectMake(0, 0, width, 44);
-        self.expaCustomBar.frame = CGRectMake(0, 44.0f, width, 32);
+        self.energyCustomBar.frame = CGRectMake(0, 44.0f, width, 32);
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         self.customBar.frame = CGRectMake(0, 0, width, 60.0f);
-        self.expaCustomBar.frame = CGRectMake(0, 60, width, 32);
+        self.energyCustomBar.frame = CGRectMake(0, 60, width, 32);
     }
     
     //set position menuButton

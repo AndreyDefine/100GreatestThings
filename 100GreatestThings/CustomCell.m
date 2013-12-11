@@ -112,8 +112,8 @@
     //add image
     [[DatabaseFromUrlBridge getSharedInstance] LoadImage:things_list.image_url todisk:things_list.disk_image_url toimageview:self.imageView1];
     
-    self.imageView1.layer.cornerRadius = 4.0;
-    self.imageView1.layer.masksToBounds = YES;
+    self.roundRectView.layer.cornerRadius = 4.0;
+    self.roundRectView.layer.masksToBounds = YES;
     for(UIImageView *imageView in self.friendsCollection)
     {
         imageView.layer.cornerRadius = 4.0;

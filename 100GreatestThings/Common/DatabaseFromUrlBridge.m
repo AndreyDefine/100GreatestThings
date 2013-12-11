@@ -187,20 +187,16 @@ static NSString* momdDataBaseName=@"MainDataBase";
 -(void)LoadImage:(NSString*)image_url todisk:(NSString*)disk_image_url toimageview:(UIImageView*)imageview
 {
     [imageview setImage:nil];
-    LoadSaveImageFromUrl *loadSaveImageFromUrl=[[LoadSaveImageFromUrl alloc]init];
-    NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
+    //пробуем взять с жёсткого диска
     UIImage *image=[[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:disk_image_url];
+    //пробуем загрузить из интернета
     if(!image)
     {
-        image = [loadSaveImageFromUrl loadImage:disk_image_url inDirectory:documentsDirectoryPath];
-    }
-    if(!image)
-    {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             UIImage *image;
-            image=[self SaveImageToDisk:image_url];
-            [[SDImageCache sharedImageCache] storeImage:image forKey:disk_image_url];
+            image=[self LoadImage:image_url];
+            [[SDImageCache sharedImageCache] storeImage:image forKey:disk_image_url toDisk:YES];
             
             if (image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -208,14 +204,14 @@ static NSString* momdDataBaseName=@"MainDataBase";
                 });
             }
         });
-    }
-    if (image){
-        [[SDImageCache sharedImageCache] storeImage:image forKey:disk_image_url];
+    }else
+    {
+        NSLog(@"on disk");
         [imageview setImage:image];
     }
 }
 
-- (UIImage*) SaveImageToDisk:(id)value
+- (UIImage*) LoadImage:(id)value
 {
     if (value == nil||value == [NSNull null]){
         return nil;

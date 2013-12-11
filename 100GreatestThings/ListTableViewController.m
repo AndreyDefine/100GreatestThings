@@ -106,13 +106,22 @@
 }
 
 - (void)configureCell:(CustomCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    Things_list *things_list = [_fetchedResultsController objectAtIndexPath:indexPath];
-    cell.tableViewController=self;
     
-    cell.navigationController=self.navigationController;
-    cell.storyboard=self.storyboard;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.things_list=things_list;
+    Things_list *things_list = [_fetchedResultsController objectAtIndexPath:indexPath];
+    
+    //if((![things_list.title isEqualToString:cell.things_list.title])||cell.imageView1.image==nil)
+    {
+        cell.tableViewController=self;
+        
+        cell.navigationController=self.navigationController;
+        cell.storyboard=self.storyboard;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.things_list=things_list;
+    }
+    /*else
+    {
+       // NSLog(@"not reusing");
+    }*/
 }
 
 

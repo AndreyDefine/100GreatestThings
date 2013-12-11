@@ -32,8 +32,8 @@
 - (void) GetLevels:(void (^)(NSError*))responseBlock;
 //Сохранить базу данных
 - (void)saveContext;
-//Сохранить картинку на диск
-- (UIImage*) SaveImageToDisk:(NSString*)value;
+//Загрузить картинку
+- (UIImage*) LoadImage:(NSString*)value;
 //Загрузить с кешированием картинку из интернета, и по завершении поместить её в указанный imageview
 -(void)LoadImage:(NSString*)image_url todisk:(NSString*)disk_image_url toimageview:(UIImageView*)imageview;
 

@@ -68,7 +68,7 @@
     buttonBack.hidden=true;
     
     //проверим первая ли это загрузка
-    //if([CommonUserDefaults getSharedInstance].flagNotFirstLaunch==NO)
+    if([CommonUserDefaults getSharedInstance].flagNotFirstLaunch==NO)
     {
         NSLog(@"first launch!!!");
         
